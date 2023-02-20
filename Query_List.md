@@ -12,7 +12,7 @@
 - Create new timelines
 - Merge two timelines
 
-### Queries Related to Versions
+## Queries Related to Versions
 - Update to the latest version in current timeline
 - Set the latest version in current timeline 
 - Revert to the previous version 
