@@ -9,7 +9,7 @@
     - Project Level 
     - Branch Level
     - Spectator
-- analyse each contributior's gross contribution using aggregation operations
+- analyse each contributor's gross contribution using aggregation operations
 
 ## Queries Related to Timelines
 - Create new timelines
