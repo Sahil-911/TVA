@@ -17,6 +17,6 @@
 - Set the latest version in current timeline 
 - Revert to the previous version 
 - Compare with any version in current timeline 
-- See who authored the version  
+- See who authored the given version  
 - See if new files are created in the given version
 - See if any files are removed in the given version
