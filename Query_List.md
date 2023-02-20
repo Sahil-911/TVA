@@ -6,6 +6,9 @@
 - Remove projects
 - Invite contributors
 - Manage access / roles for contributors
+    - Project Level 
+    - Branch Level
+    - Spectator
 - analyse each contributior's gross contribution using aggregation operations
 
 ## Queries Related to Timelines
