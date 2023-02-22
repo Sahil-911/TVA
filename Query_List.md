@@ -23,3 +23,10 @@
 - See who authored the given version  
 - See if new files are created in the given version
 - See if any files are removed in the given version
+
+## Queries Related to Files
+- Add a line in a file
+- Update a line in a file
+- Remove a line in a file
+- Clean entire file
+- Show file history line-wise
