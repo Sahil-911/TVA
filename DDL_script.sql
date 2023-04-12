@@ -27,7 +27,7 @@ create table Local_files(
 	Project_id int references Project(Project_id)
 	on update cascade on delete cascade,
 	User_id int references User(User_id)
-	on update cascade on delete cascade,
+	on update cascade on delete set null,
 	Timeline_id int references Timeline(Timeline_id)
 	on update cascade on delete cascade
 );
