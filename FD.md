@@ -1,5 +1,5 @@
-Timeline(Timeline_id,Project_id,Latest_Version)
-Timeline_id, Project_id -> Latest_Version
+Timeline(Timeline_id,Project_id,Latest_Version, Latest_Files)
+Timeline_id, Project_id -> Latest_Version, Latest_Files
 
 Version(Version_id,Timeline_id,Project_id,Updater_id)
 Version_id, Timeline_id, Project_id -> Updater_id
