@@ -10,3 +10,18 @@ Change(Version_id,Timeline_id,Project_id,Line_id,File_id,Previous_content,New_co
 Version_id, Timeline_id, Project_id,Line_id, File_id -> Previous_content, New_content
 
 
+Project(Project_id,Project_name,Manager_id)
+Project_id -> Project_name,Manager_id
+
+User(User_id,User_name)
+User_id -> User_name
+
+Collaborator(Project_id, User_id, Role)
+Project_id, User_id -> Role
+
+Local_Files(Local_id, Project_id, User_id, Timeline_id)
+Local_id , Project_id, Timeline_id -> User_id
+
+Files(File_id, Local_id, File_name, length)
+File_id , Local_id -> File_name, length
+
