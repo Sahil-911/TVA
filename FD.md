@@ -15,13 +15,16 @@ Project_id, User_id -> Role
 
 ## Local_Files(Local_id, Project_id, User_id, Timeline_id)
 
-Local_id , Project_id -> User_id, Timeline_id
+Local_id, Project_id -> User_id, Timeline_id
 
 
-## File(File_id, Local_id, File_name, length)
+## File(File_id, Local_id, Project_id, File_name, Length)
 
-File_id , Local_id -> File_name, length
+File_id, Local_id, Project_id  -> File_name, Length
 
+## Line(Line_id, File_id, Local_id, Project_id, Content)
+
+Line_id, File_id, Local_id, Project_id -> Content
 
 ## Timeline(Timeline_id,Project_id,Latest_Version, Latest_Files)
 
