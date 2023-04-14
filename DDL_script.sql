@@ -1,77 +1,114 @@
-create schema G5_7;
-set search_path to G5_7;
+CREATE SCHEMA DBMS_PROJECT;
+SET search_path TO DBMS_PROJECT;
 
-create table User(
-	User_id int primary key,
-	User_name varchar(20)
+CREATE TABLE "User" (
+    User_id INT PRIMARY KEY,
+    User_name VARCHAR(20) NOT NULL
 );
 
-create table Project(
-	Project_id int primary key,
-	Project_name varchar(20),
-	Manager_id int references User(User_id)
-	on update cascade on delete cascade
+CREATE TABLE Project (
+    Project_id INT PRIMARY KEY,
+    Project_name VARCHAR(20) NOT NULL,
+    Manager_id INT NOT NULL
 );
 
-create table Collaborator(
-	Project_id int references Project(Project_id)
-	on update cascade on delete cascade,
-	User_id int references User(User_id)
-	on update cascade on delete cascade,
-	primary key(Project_id,User_id),
-	Role varchar(20)
+CREATE TABLE Collaborator (
+    Project_id INT NOT NULL,
+    User_id INT NOT NULL,
+    Role VARCHAR(20) NOT NULL
 );
 
-create table Local_files(
-	Local_id int primary key,
-	Project_id int references Project(Project_id)
-	on update cascade on delete cascade,
-	User_id int references User(User_id)
-	on update cascade on delete set null,
-				-- Timeline_id int references Timeline(Timeline_id)
-				-- on update cascade on delete cascade
+CREATE TABLE "File" (
+    File_id INT PRIMARY KEY,
+    Local_id INT NOT NULL,
+    Project_id INT NOT NULL,
+    File_name VARCHAR(20) NOT NULL,
+    Length INT NOT NULL
 );
 
-create table File(
-	File_id int,
-	Local_id int references Local_files(Local_id)
-	on update cascade on delete cascade,
-	primary key(File_id,Local_id),
-	File_name varchar(20)
+CREATE TABLE Local_Files (
+    Local_id INT PRIMARY KEY,
+    Project_id INT NOT NULL,
+    User_id INT NOT NULL,
+    Timeline_id INT NOT NULL
 );
 
-create table Line(
-	Line_id int,
-	File_id int references File(File_id)
-	on update cascade on delete cascade,
-	primary key(Line_id,File_id),
-	Content varchar(20)
+CREATE TABLE "Line" (
+    Line_id INT PRIMARY KEY,
+    File_id INT NOT NULL,
+    Local_id INT NOT NULL,
+    Project_id INT NOT NULL,
+    Content VARCHAR(1024) NOT NULL
 );
 
-create table Timeline(
-	Timeline_id int,
-	Project_id int references Project(Project_id)
-	on update cascade on delete cascade,
-	Latest_version int,
-	primary key(Timeline_id,Project_id)
+CREATE TABLE Timeline (
+    Timeline_id INT PRIMARY KEY,
+    Project_id INT NOT NULL,
+    Latest_Version VARCHAR(20) NOT NULL,
+    Latest_Files VARCHAR(20) NOT NULL
 );
 
-create table Version(
-	Version_id int,
-	Timeline_id int,
-	Project_id int references Project(Project_id)
-	on update cascade on delete cascade,
-	User_id int references User(User_id)
-	on update cascade on delete cascade,
-	primary key(version_id,Timeline_id)
+CREATE TABLE "Version" (
+    Version_id INT PRIMARY KEY,
+    Timeline_id INT NOT NULL,
+    Project_id INT NOT NULL,
+    Updater_id INT NOT NULL
 );
 
-create table Change(
-	Previous_id int references Version(Version_id)
-	on update cascade on delete cascade,
-	Line_id int references Line(Line_id)
-	on update cascade on delete cascade,
-	primary key(Previous_id,Line_id)
-	Prev_content varchar(20),
-	New_content varchar(20)
+CREATE TABLE Change (
+    Version_id INT NOT NULL,
+    Timeline_id INT NOT NULL,
+    Project_id INT NOT NULL,
+    Line_id INT NOT NULL,
+    File_id INT NOT NULL,
+    Previous_content VARCHAR(1024) NOT NULL,
+    New_content VARCHAR(1024) NOT NULL
 );
+
+ALTER TABLE Collaborator
+    ADD FOREIGN KEY (Project_id) REFERENCES Project(Project_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (User_id) REFERENCES "User"(User_id)
+    ON DELETE SET NULL ON UPDATE CASCADE;
+
+ALTER TABLE Local_Files
+    ADD FOREIGN KEY (Project_id) REFERENCES Project(Project_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (User_id) REFERENCES "User"(User_id)
+    ON DELETE SET NULL ON UPDATE CASCADE;
+
+ALTER TABLE "File"
+    ADD FOREIGN KEY (Local_id) REFERENCES Local_Files(Local_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (Project_id) REFERENCES Project(Project_id)
+     ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE "Line"
+    ADD FOREIGN KEY (File_id) REFERENCES "File"(File_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (Local_id) REFERENCES Local_Files(Local_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (Project_id) REFERENCES Project(Project_id)
+    ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE Timeline
+    ADD FOREIGN KEY (Project_id) REFERENCES Project(Project_id)
+    ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE "Version"
+    ADD FOREIGN KEY (Timeline_id) REFERENCES Timeline(Timeline_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (Project_id) REFERENCES Project(Project_id)
+    ON DELETE CASCADE ON UPDATE CASCADE;
+     
+ALTER TABLE Change
+    ADD FOREIGN KEY (Version_id) REFERENCES "Version"(Version_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (Timeline_id) REFERENCES Timeline(Timeline_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (Project_id) REFERENCES Project(Project_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (Line_id) REFERENCES "Line"(Line_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (File_id) REFERENCES "File"(File_id)
+    ON DELETE CASCADE ON UPDATE CASCADE;
