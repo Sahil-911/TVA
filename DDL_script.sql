@@ -28,8 +28,8 @@ create table Local_files(
 	on update cascade on delete cascade,
 	User_id int references User(User_id)
 	on update cascade on delete set null,
-	Timeline_id int references Timeline(Timeline_id)
-	on update cascade on delete cascade
+				-- Timeline_id int references Timeline(Timeline_id)
+				-- on update cascade on delete cascade
 );
 
 create table File(
