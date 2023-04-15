@@ -18,6 +18,13 @@ CREATE TABLE Collaborator (
     Role VARCHAR(20) NOT NULL
 );
 
+CREATE TABLE Local_Files (
+    Local_id INT PRIMARY KEY,
+    Project_id INT PRIMARY KEY,
+    User_id INT NOT NULL,
+    Timeline_id INT NOT NULL
+);
+
 CREATE TABLE "File" (
     File_id INT PRIMARY KEY,
     Local_id INT PRIMARY KEY,
@@ -26,12 +33,7 @@ CREATE TABLE "File" (
     Length INT NOT NULL
 );
 
-CREATE TABLE Local_Files (
-    Local_id INT PRIMARY KEY,
-    Project_id INT PRIMARY KEY,
-    User_id INT NOT NULL,
-    Timeline_id INT NOT NULL
-);
+
 
 CREATE TABLE "Line" (
     Line_id INT PRIMARY KEY,
