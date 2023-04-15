@@ -13,54 +13,54 @@ CREATE TABLE Project (
 );
 
 CREATE TABLE Collaborator (
-    Project_id INT NOT NULL,
-    User_id INT NOT NULL,
+    Project_id INT PRIMARY KEY,
+    User_id INT PRIMARY KEY,
     Role VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE "File" (
     File_id INT PRIMARY KEY,
-    Local_id INT NOT NULL,
-    Project_id INT NOT NULL,
+    Local_id INT PRIMARY KEY,
+    Project_id INT PRIMARY KEY,
     File_name VARCHAR(20) NOT NULL,
     Length INT NOT NULL
 );
 
 CREATE TABLE Local_Files (
     Local_id INT PRIMARY KEY,
-    Project_id INT NOT NULL,
+    Project_id INT PRIMARY KEY,
     User_id INT NOT NULL,
     Timeline_id INT NOT NULL
 );
 
 CREATE TABLE "Line" (
     Line_id INT PRIMARY KEY,
-    File_id INT NOT NULL,
-    Local_id INT NOT NULL,
-    Project_id INT NOT NULL,
+    File_id INT PRIMARY KEY,
+    Local_id INT PRIMARY KEY,
+    Project_id INT PRIMARY KEY,
     Content VARCHAR(1024) NOT NULL
 );
 
 CREATE TABLE Timeline (
     Timeline_id INT PRIMARY KEY,
-    Project_id INT NOT NULL,
+    Project_id INT PRIMARY KEY,
     Latest_Version VARCHAR(20) NOT NULL,
     Latest_Files VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE "Version" (
     Version_id INT PRIMARY KEY,
-    Timeline_id INT NOT NULL,
-    Project_id INT NOT NULL,
+    Timeline_id INT PRIMARY KEY,
+    Project_id INT PRIMARY KEY,
     Updater_id INT NOT NULL
 );
 
 CREATE TABLE Change (
-    Version_id INT NOT NULL,
-    Timeline_id INT NOT NULL,
-    Project_id INT NOT NULL,
-    Line_id INT NOT NULL,
-    File_id INT NOT NULL,
+    Version_id INT PRIMARY KEY,
+    Timeline_id INT PRIMARY KEY,
+    Project_id INT PRIMARY KEY,
+    Line_id INT PRIMARY KEY,
+    File_id INT PRIMARY KEY,
     Previous_content VARCHAR(1024) NOT NULL,
     New_content VARCHAR(1024) NOT NULL
 );
