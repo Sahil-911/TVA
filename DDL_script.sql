@@ -21,8 +21,8 @@ CREATE TABLE Collaborator (
 CREATE TABLE Local_Files (
     Local_id INT PRIMARY KEY,
     Project_id INT PRIMARY KEY,
-    User_id INT NOT NULL,
-    Timeline_id INT NOT NULL
+    User_id INT,
+    Timeline_id INT SET DEFAULT 0 NOT NULL
 );
 
 CREATE TABLE "File" (
@@ -32,8 +32,6 @@ CREATE TABLE "File" (
     File_name VARCHAR(20) NOT NULL,
     Length INT NOT NULL
 );
-
-
 
 CREATE TABLE "Line" (
     Line_id INT PRIMARY KEY,
@@ -78,12 +76,14 @@ ALTER TABLE Local_Files
     ON DELETE CASCADE ON UPDATE CASCADE,
     ADD FOREIGN KEY (User_id) REFERENCES "User"(User_id)
     ON DELETE SET NULL ON UPDATE CASCADE;
+    ADD FOREIGN KEY (Timeline_id) REFERENCES Timeline(Timeline_id)
+    ON DELETE SET NULL ON UPDATE CASCADE;
 
 ALTER TABLE "File"
     ADD FOREIGN KEY (Local_id) REFERENCES Local_Files(Local_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
     ADD FOREIGN KEY (Project_id) REFERENCES Project(Project_id)
-     ON DELETE CASCADE ON UPDATE CASCADE;
+    ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE "Line"
     ADD FOREIGN KEY (File_id) REFERENCES "File"(File_id)
