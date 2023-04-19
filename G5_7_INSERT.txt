@@ -6,9 +6,56 @@ INSERT INTO "User" VALUES(3,'SAHIL');
 INSERT INTO "User" VALUES(4,'OM');
 
 --project insert: -- ALTER TABLE PROJECT ALTER COLUMN project_name TYPE varchar(50); (altered datatype of project name)
+--project_is,name,manager_id
 INSERT INTO PROJECT VALUES(1,'Version Control System',1);
+INSERT INTO PROJECT VALUES(2,'CRICBUZZ',3);
 
 --collaborator insert:
+--project_id,user_id,role
 INSERT INTO collaborator VALUES(1,2,'developer');
+INSERT INTO collaborator VALUES(2,1,'system admin');
+
+--timeline insert;
+--timeline_id,project_id,latest_version,latest_files
+INSERT INTO timeline VALUES(1,1,0,0);
+INSERT INTO timeline VALUES(1,2,0,0);
+
+--local files insert;
+--local_id,project_id,user_id,timeline_id
+INSERT INTO local_files VALUES(1,1,2,1);
+INSERT INTO local_files VALUES(2,2,1,1);
+
+--files insert:
+local_id,project_id,file_id,file_name
+INSERT INTO "File" VALUES(1,1,1,'erdiagram');
 
 
+--line insert;
+--local_id,project_id,file_id,line_id,content
+INSERT INTO "Line" VALUES(1,1,1,1,'This is first line');
+
+
+
+
+
+
+
+
+------------------------------------
+Not for you...
+------------------------------------
+set search_path to dbms_project;
+
+UPDATE PROJECT 
+SET project_name='Cricbuzz' where project_name='CRICBUZZ';
+INSERT INTO "File" VALUES(1,1,1,'erdiagram');
+INSERT INTO "Line" VALUES(1,1,1,1,'This is first line');
+
+SELECT * FROM timeline;
+SELECT * FROM "User";
+SELECT * FROM project;
+SELECT * FROM collaborator;
+select * from local_files;
+select * from "File";
+
+select * from "Line";
