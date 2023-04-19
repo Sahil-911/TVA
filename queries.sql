@@ -5,15 +5,11 @@
 -- make a new local
 -- set timeline(timeline#n)'s latest local to local#n
 -- add all files & lines with "local#n,project#n" to the new local
-
-
 --pull query
 --remove all files with local#n
 --copy all files & lines from the "latest local of timeline" to local#n
 -- revert one version back
 -- do all the changes to latest_local (line table)
-
-
 -- add a line to file
 INSERT INTO "Line" (
           "Line_id",
@@ -22,7 +18,37 @@ INSERT INTO "Line" (
           "Project_id",
           "Content"
      )
-VALUES ("line#n", "file#n", "local#n", "project#n", "content");
-
-UPDATE "File" SET  length = length + 1 WHERE "File_id" = "file#n";
-
+VALUES (
+          "line#n",
+          "file#n",
+          "local#n",
+          "project#n",
+          "content"
+     );
+UPDATE "File"
+SET length = length + 1
+WHERE "File_id" = "file#n";
+-- update a line
+UPDATE "Line"
+SET "Content" = "abcde"
+WHERE "Line_id" = "line#n"
+     AND "File_id" = "file#n"
+     AND "local_id" = "local#n"
+     AND "Project_id" = "project#n";
+-- delete a line
+UPDATE "Line"
+SET "Content" = ""
+WHERE "Line_id" = "line#n"
+     AND "File_id" = "file#n"
+     AND "local_id" = "local#n"
+     AND "Project_id" = "project#n";
+-- clear a file
+DELETE FROM "Line"
+WHERE "File_id" = "file#n"
+     AND "local_id" = "local#n"
+     AND "Project_id" = "project#n";
+UPDATE "File"
+SET length = 0
+WHERE "File_id" = "file#n"
+     AND "local_id" = "local#n"
+     AND "Project_id" = "project#n";

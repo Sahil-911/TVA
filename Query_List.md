@@ -2,8 +2,6 @@
 
 ## Queries Related to Managing the Project
 - Create projects ✅
-- Modify project metadata ✅
-- Remove projects ✅
 - Invite contributors ✅
 - Analyse each contributor's gross contribution using aggregation operations❗ 
 
@@ -21,8 +19,8 @@
 - See if any files are removed in the given version ❗
 
 ## Queries Related to File changes
-- Add a line in a file ❗
-- Update a line in a file ❗
-- Remove a line in a file ❗
-- Clean entire file ❗
+- Add a line in a file ✅
+- Update a line in a file ✅
+- Remove a line in a file ✅
+- Clean entire file ✅
 - Show file history line-wise ❗
