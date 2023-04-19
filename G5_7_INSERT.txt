@@ -1,0 +1,14 @@
+--User insert:
+
+INSERT INTO "User" VALUES(1,'SHIVANG');
+INSERT INTO "User" VALUES(2,'SOHAM');
+INSERT INTO "User" VALUES(3,'SAHIL');
+INSERT INTO "User" VALUES(4,'OM');
+
+--project insert: -- ALTER TABLE PROJECT ALTER COLUMN project_name TYPE varchar(50); (altered datatype of project name)
+INSERT INTO PROJECT VALUES(1,'Version Control System',1);
+
+--collaborator insert:
+INSERT INTO collaborator VALUES(1,2,'developer');
+
+
