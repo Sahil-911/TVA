@@ -7,14 +7,14 @@
 
 ## Queries Related to Timelines
 - Create new timelines ❗
-- Merge two timelines ❗
+- 💥 Merge two timelines ❗
 
 ## Queries Related to Versions
 - Update to the latest version in current timeline ✅ 
 - Set the latest version in current timeline ✅ 
-- Revert to the previous version ❗
+- 💥 Revert to the previous version ❗
 - Compare with any version in current timeline ❗
-- See who authored the given version  ❗
+- See who authored the given version ❗
 - See if new files are created in the given version ❗
 - See if any files are removed in the given version ❗
 
@@ -23,4 +23,4 @@
 - Update a line in a file ✅
 - Remove a line in a file ✅
 - Clean entire file ✅
-- Show file history line-wise ❗
+- 💥 Show file history line-wise ❗
