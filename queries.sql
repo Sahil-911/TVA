@@ -1,3 +1,25 @@
+-- ------------------------------------
+-- Not for you...
+-- ------------------------------------
+-- set search_path to dbms_project;
+
+-- UPDATE PROJECT 
+-- SET project_name='Cricbuzz' where project_name='CRICBUZZ';
+-- INSERT INTO "File" VALUES(1,1,1,'erdiagram');
+-- INSERT INTO "Line" VALUES(1,1,1,1,'This is first line');
+
+-- SELECT * FROM timeline;
+-- SELECT * FROM "User";
+-- SELECT * FROM project;
+-- SELECT * FROM collaborator;
+-- select * from local_files;
+-- select * from "File";
+
+-- select * from "Line";
+
+
+
+
 --push query
 -- make a new version vn
 -- set latest_version to vn
