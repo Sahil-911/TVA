@@ -32,12 +32,9 @@
 --copy all files & lines from the "latest local of timeline" to local#n
 -- revert one version back
 -- do all the changes to latest_local (line table)
-
-
-
 -- update a line
 UPDATE "Line"
-SET "Content" = "abcde"
+SET "Content" = "new content"
 WHERE "Line_id" = "line#n"
      AND "File_id" = "file#n"
      AND "local_id" = "local#n"
@@ -54,8 +51,50 @@ DELETE FROM "Line"
 WHERE "File_id" = "file#n"
      AND "local_id" = "local#n"
      AND "Project_id" = "project#n";
-UPDATE "File"
-SET length = 0
-WHERE "File_id" = "file#n"
-     AND "local_id" = "local#n"
-     AND "Project_id" = "project#n";
+-- files created in the given version
+SELECT DISTINCT ("File_id", "File_name")
+FROM (
+          (
+               "Change"
+               NATURAL JOIN "File"
+               WHERE "Version_id" = "version#n"
+                    AND "Timeline_id" = "timeline#n"
+                    AND "Project_id" = "project#n"
+          )
+          EXCEPT (
+                    "Change"
+                    NATURAL JOIN "File"
+                    WHERE "Version_id" = "version#n-1"
+                         AND "Timeline_id" = "timeline#n"
+                         AND "Project_id" = "project#n"
+               )
+     );
+-- files deleted in the given version
+SELECT DISTINCT ("File_id", "File_name")
+FROM (
+          (
+               "Change"
+               NATURAL JOIN "File"
+               WHERE "Version_id" = "version#n-1"
+                    AND "Timeline_id" = "timeline#n"
+                    AND "Project_id" = "project#n"
+          )
+          EXCEPT (
+                    "Change"
+                    NATURAL JOIN "File"
+                    WHERE "Version_id" = "version#n"
+                         AND "Timeline_id" = "timeline#n"
+                         AND "Project_id" = "project#n"
+               )
+     );
+-- See who authored the given version
+SELECT "User_id",
+     "User_name"
+FROM "User"
+WHERE "User_id" = (
+          SELECT "User_id"
+          FROM "Version"
+          WHERE "Version_id" = "version#n"
+               AND "Timeline_id" = "timeline#n"
+               AND "Project_id" = "project#n"
+     );
