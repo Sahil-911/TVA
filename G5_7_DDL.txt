@@ -49,12 +49,12 @@ CREATE TABLE Local_Files (
     Timeline_id INT DEFAULT 0 NOT NULL,
     PRIMARY KEY (Local_id, Project_id)
 );
+
 CREATE TABLE "File" (
     Local_id INT NOT NULL,
     Project_id INT NOT NULL,
     File_id INT NOT NULL,
     File_name VARCHAR(20) NOT NULL,
-    Length INT NOT NULL,
     CONSTRAINT File_PFK FOREIGN KEY (Local_id, Project_id)
      REFERENCES Local_Files(Local_id, Project_id)
      ON DELETE CASCADE ON UPDATE CASCADE,
@@ -65,6 +65,7 @@ CREATE TABLE "File" (
         File_id
     )
 );
+
 CREATE TABLE "Line" (
     Local_id INT NOT NULL,
     Project_id INT NOT NULL,
