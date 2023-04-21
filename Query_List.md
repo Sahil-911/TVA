@@ -10,9 +10,9 @@
 - 💥 Merge two timelines ❗
 
 ## Queries Related to Versions
-- Update to the latest version in current timeline 
-- Set the latest version in current timeline ✅ 
-- 💥 Revert to the previous version ❗ 
+- Update to the latest version in current timeline ✅
+- 💥 Set the latest version in current timeline 
+- 💥 Revert to the previous version ✅
 - Compare with any version in current timeline ❗ @ShivangKacha
 - 💥 See last changed the given line ❗
 
