@@ -284,13 +284,13 @@ INSERT INTO "Line" VALUES(1,2,1,18,'Are you a bank? Because I’m checking you o
 INSERT INTO "Line" VALUES(1,2,1,19,'Are you a magician? Because every time I look at you, everyone else disappears.');
 INSERT INTO "Line" VALUES(1,2,1,20,'Are you a Netflix show? Because I want to binge watch you.');
 
-INSERT INTO "Line" VALUES(2,2,2,16,'Are you a star? Because you’re the only thing I see tonight');
-INSERT INTO "Line" VALUES(2,2,2,17,'Are you a song? Because you’re music to my ears.');
-INSERT INTO "Line" VALUES(2,2,2,18,'Are you a flower? Because you’re blooming beautiful');
-INSERT INTO "Line" VALUES(2,2,2,19,'Are you a pizza? Because you’re cheesy and delicious.');
+INSERT INTO "Line" VALUES(2,2,2,16,'Are you a star? Because you are the only thing I see tonight');
+INSERT INTO "Line" VALUES(2,2,2,17,'Are you a song? Because you are music to my ears.');
+INSERT INTO "Line" VALUES(2,2,2,18,'Are you a flower? Because you are blooming beautiful');
+INSERT INTO "Line" VALUES(2,2,2,19,'Are you a pizza? Because you are cheesy and delicious.');
 INSERT INTO "Line" VALUES(2,2,2,20,'Are you a joke? Because you make me laugh.');
 						  
-INSERT INTO "Line" VALUES(3,2,3,16,'Are you a dream? Because you’re too good to be true.');
+INSERT INTO "Line" VALUES(3,2,3,16,'Are you a dream? Because you are too good to be true.');
 INSERT INTO "Line" VALUES(3,2,3,17,'Are you a book? Because I want to read you all night');
 INSERT INTO "Line" VALUES(3,2,3,18,'The sky is blue today.');
 INSERT INTO "Line" VALUES(3,2,3,19,'I love eating sushi.');
@@ -313,16 +313,16 @@ INSERT INTO "Line" VALUES(1,2,5,20,'I love to paint and express myself through a
 -- Update the content of the line with the given local_id, project_id, file_id, and line_id.
 --Line(local_id,project_id,file_id,line_id,content);
 UPDATE Line SET content = 'The Enddd' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 1;
-UPDATE Line SET content = 'Are you a coffee? Because you’re hot and sweet.' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 2;
-UPDATE Line SET content = 'Are you a candy? Because you’re a treat' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 3;
-UPDATE Line SET content = 'Are you a firework? Because you’re explosive and colorful.' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 4;
-UPDATE Line SET content = 'Are you a diamond? Because you’re precious and rare.' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 5;
+UPDATE Line SET content = 'Are you a coffee? Because you are hot and sweet.' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 2;
+UPDATE Line SET content = 'Are you a candy? Because you are a treat' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 3;
+UPDATE Line SET content = 'Are you a firework? Because you are explosive and colorful.' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 4;
+UPDATE Line SET content = 'Are you a diamond? Because you are precious and rare.' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 5;
 
 
 UPDATE Line SET content = 'Are you a rainbow? Because you brighten up my day.' WHERE local_id = 1 AND project_id = 1 AND file_id = 2 AND line_id = 1;
 UPDATE Line SET content = 'Are you a puzzle? Because I want to piece you together.' WHERE local_id = 1 AND project_id = 1 AND file_id = 2 AND line_id = 2;
 UPDATE Line SET content = 'Are you a phone? Because I want to hold you and talk to you.' WHERE local_id = 1 AND project_id = 1 AND file_id = 2 AND line_id = 3;
-UPDATE Line SET content = 'Are you a painting? Because you’re a masterpiece.' WHERE local_id = 1 AND project_id = 1 AND file_id = 2 AND line_id = 4;
+UPDATE Line SET content = 'Are you a painting? Because you are a masterpiece.' WHERE local_id = 1 AND project_id = 1 AND file_id = 2 AND line_id = 4;
 UPDATE Line SET content = 'Are you a key? Because you unlock my heart.' WHERE local_id = 1 AND project_id = 1 AND file_id = 2 AND line_id = 5;
 
 UPDATE Line SET content = 'The sky was painted in shades of orange and pink as the sun set over the horizon.' WHERE local_id = 3 AND project_id = 1 AND file_id = 3 AND line_id = 11;
