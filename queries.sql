@@ -252,31 +252,20 @@ from (
      )
 where t1.content != t2.content;
 
-select * from (select min(version_id) as sm,max(version_id) as mx,line_id as li,file_id as fi from change 
-	 where project_id=1 and timeline_id=1 group by line_id,file_id) as que 
-	join change as ch on que.li=ch.line_id and que.fi=ch.file_id and sm=ch.version_id where project_id=1 and timeline_id=1;
-	
-	
+--version compare
 select sm,mx,li as line_id,fi as file_id,firs.previous_content,cha.new_content from 
 	(select * from (select min(version_id) as sm,max(version_id) as mx,line_id as li,file_id as fi from change 
 	 where project_id=1 and timeline_id=1 group by line_id,file_id) as que 
 	join change as ch on que.li=ch.line_id and que.fi=ch.file_id and sm=ch.version_id where project_id=1 and timeline_id=1) as firs 
- join change as cha on firs.li=cha.line_id and firs.fi=cha.file_id and mx=cha.version_id where cha.project_id=1 and cha.timeline_id=1 and sm>=2 and mx<=4;
+ join change as cha on firs.li=cha.line_id and firs.fi=cha.file_id and mx=cha.version_id where cha.project_id=1 and cha.timeline_id=1 and sm>=2 and mx<=4;
  
- int star=2,end 
- select sm,mx,li as line_id,fi as file_id,firs.previous_content,cha.new_content from 
-	(select * from (select min(version_id) as sm,max(version_id) as mx,line_id as li,file_id as fi from change 
-	 where project_id=1 and timeline_id=1 group by line_id,file_id) as que 
-	join change as ch on que.li=ch.line_id and que.fi=ch.file_id and sm=ch.version_id where project_id=1 and timeline_id=1) as firs 
- join change as cha on firs.li=cha.line_id and firs.fi=cha.file_id and mx=cha.version_id where cha.project_id=1 and cha.timeline_id=1 and sm>=2 and mx<=4;
- 
- 
- 
- select version_id,timeline_id,file_id,line_id,previous_content,new_content,user_name as updater_name from 
+  --💥 Show file history line-wise ❗ 
+  select version_id,timeline_id,file_id,line_id,previous_content,new_content,user_name as updater_name from 
  ((select * from (select max(version_id) as mx,line_id as li from change 
 	where project_id=1 and timeline_id=1 and file_id=1 group by line_id) as que 
 	join change as ch on que.li=ch.line_id and mx=ch.version_id where project_id=1 and timeline_id=1 and file_id=1) as fir
 	natural join "Version") as sec join "User" on updater_id=user_id ;
-	
-	
+
+
+--Analyse each contributor's gross contribution using aggregation operations
  select user_id,user_name,change from (select COUNT(*) as change,user_id from (change natural join "Version") as ch join "User" on user_id=updater_id where project_id=1 group by user_id) as e natural join "User" ;
