@@ -1,4 +1,11 @@
+-- ------------------------------------
+-- Not for you...
+-- ------------------------------------
 -- set search_path to dbms_project;
+-- UPDATE PROJECT 
+-- SET project_name='Cricbuzz' where project_name='CRICBUZZ';
+-- INSERT INTO "File" VALUES(1,1,1,'erdiagram');
+-- INSERT INTO "Line" VALUES(1,1,1,1,'This is first line');
 -- SELECT * FROM timeline;
 -- SELECT * FROM "User";
 -- SELECT * FROM project;
@@ -6,7 +13,7 @@
 -- select * from local_files;
 -- select * from "File";
 -- select * from "Line";
--- Update a line
+--update a line
 UPDATE "Line"
 SET "Content" = "There was a change in this line"
 WHERE "Line_id" = 1
@@ -135,6 +142,7 @@ FROM (
           AND "Local_1".File_id = "Local_2".File_id
      )
 WHERE "Local_1".Content != "Local_2".Content;
+
 -- Revert to the previous version
 UPDATE "Line"
 SET "Content" = "Change".Previous_content
@@ -144,141 +152,27 @@ WHERE "Line".Line_id = "Change".Line_id
      AND "Change".Version_id = 1
      AND "Change".Timeline_id = 1
      AND "Change".Project_id = 1;
---version compare
-set search_path to dbms_project;
-select *
-from timeline;
-select *
-from "User";
-select *
-from local_files;
-SELECT *
-FROM COLLABORATOR;
-select *
-from "Version";
-SELECT *
-FROM CHANGE;
-SELECT *
-FROM "Line";
-SELECT ch.line_id,
-     ch.file_id,
-     prev_content
-FROM (
-          change
-          JOIN (
-               select MIN(version_id) as first_version,
-                    MAX(version_id) as last_version,
-                    line_id,
-                    file_id
-               from (
-                         select *
-                         from CHANGE as ch
-                              natural join (
-                                   SELECT *
-                                   from "Version"
-                                   where version_id >= 1
-                                        and version_id <= 3
-                                        and project_id = 1
-                                        and timeline_id = 1
-                              ) as ver
-                    ) as que
-               group by line_id,
-                    file_id
-          ) as ch ON ch.line_id = change.line_id
-          and ch.file_id = change.file_id
-          and ch.first_version = change.version_id
-     ) as t;
-
--- Merge two timelines ( 0 and 1)
--- copy all files and lines which are not in timeline 0
-INSERT INTO "File" (File_id, Local_id, File_name, Project_id)
-SELECT File_id,
-     0 as Local_id,
-     File_name,
-     Project_id
-FROM "File"
-WHERE Local_id = 1
-     AND Project_id = 1
-     AND File_id NOT IN (
-          SELECT File_id
-          FROM "File"
-          WHERE Local_id = 0
-               AND Project_id = 1
-     );
-INSERT INTO "Line" (
-          Line_id,
-          File_id,
-          Local_id,
-          Project_id,
-          Content
-     )
-SELECT Line_id,
-     File_id,
-     0 as Local_id,
-     Project_id,
-     Content
-FROM "Line"
-WHERE Local_id = 1
-     AND Project_id = 1
-     AND Line_id NOT IN (
-          SELECT Line_id
-          FROM "Line"
-          WHERE Local_id = 0
-               AND Project_id = 1
-     );
      
--- remove latest_local of timeline 1
-DELETE FROM "Local_files"
-WHERE "Project_id" = 1
-     AND "Timeline_id" = 1;
-
--- remove timeline 1
-DELETE FROM "Timeline"
-WHERE "Project_id" = 1
-     AND "Timeline_id" = 1; ( 0 and 1)
--- copy all files and lines which are not in timeline 0
-INSERT INTO "File" (File_id, Local_id, File_name, Project_id)
-SELECT File_id,
-     0 as Local_id,
-     File_name,
-     Project_id
-FROM "File"
-WHERE Local_id = 1
-     AND Project_id = 1
-     AND File_id NOT IN (
-          SELECT File_id
-          FROM "File"
-          WHERE Local_id = 0
-               AND Project_id = 1
-     );
-INSERT INTO "Line" (
-          Line_id,
-          File_id,
-          Local_id,
-          Project_id,
-          Content
-     )
-SELECT Line_id,
-     File_id,
-     0 as Local_id,
-     Project_id,
-     Content
-FROM "Line"
-WHERE Local_id = 1
-     AND Project_id = 1
-     AND Line_id NOT IN (
-          SELECT Line_id
-          FROM "Line"
-          WHERE Local_id = 0
-               AND Project_id = 1
-     );
      
--- remove latest_local of timeline 1
-DELETE FROM "Local_files"
-WHERE "Project_id" = 1
-     AND "Timeline_id" = 1;
-
--- remove timeline 1
-DELETE FROM "Timeline"
-WHERE "Project_id" = 1
-     AND "Timeline_id" = 1;
+     
+     --version compare
+     
+select sm,mx,li as line_id,fi as file_id,firs.previous_content,cha.new_content from 
+	(select * from (select min(version_id) as sm,max(version_id) as mx,line_id as li,file_id as fi from change 
+	 where project_id=1 and timeline_id=1 group by line_id,file_id) as que 
+	join change as ch on que.li=ch.line_id and que.fi=ch.file_id and sm=ch.version_id where project_id=1 and timeline_id=1) as firs 
+ join change as cha on firs.li=cha.line_id and firs.fi=cha.file_id and mx=cha.version_id where cha.project_id=1 and cha.timeline_id=1 and sm>=2 and mx<=4;
+ 
+ 
+ --💥 Show file history line-wise ❗ 
+  select version_id,timeline_id,file_id,line_id,previous_content,new_content,user_name as updater_name from 
+ ((select * from (select max(version_id) as mx,line_id as li from change 
+	where project_id=1 and timeline_id=1 and file_id=1 group by line_id) as que 
+	join change as ch on que.li=ch.line_id and mx=ch.version_id where project_id=1 and timeline_id=1 and file_id=1) as fir
+	natural join "Version") as sec join "User" on updater_id=user_id ;
+	
+	
+--Analyse each contributor's gross contribution using aggregation operations
+ select user_id,user_name,change from (select COUNT(*) as change,user_id from (change natural join "Version") as ch join "User" on user_id=updater_id where project_id=1 group by user_id) as e natural join "User" ;
+	
+	
