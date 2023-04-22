@@ -185,9 +185,11 @@ FROM "Line" WHERE Local_id = 2 AND Project_id = 2;
 
 -- Update Some lines
 
+UPDATE "Line" SET Content = 'The sun rises in the east and sets in the west.' WHERE Line_id = 2 AND File_id = 4 AND Local_id = 2 AND Project_id = 2;
 
 -- Add new Version
 INSERT INTO "Version" VALUES(1,1,1,3);
+INSERT INTO "Version" VALUES(1,1,2,3);
 
 -- Compare local 1 and local 3 of project 1 and add changes into change table with version 1
 INSERT INTO "Change"(Version_id,  Timeline_id,Project_id, File_id, Line_id, Previous_content, New_content)
