@@ -134,12 +134,6 @@ ADD FOREIGN KEY (Timeline_id, Project_id) REFERENCES Timeline(Timeline_id, Proje
 DELETE
 SET NULL ON UPDATE CASCADE;
 ALTER TABLE "Version"
-ADD FOREIGN KEY (Updater_id) REFERENCES "User"(User_id) 
+ADD FOREIGN KEY (Updater_id, Project_id) REFERENCES "Collaborator"(User_id,Project_id) 
 ON DELETE SET NULL ON UPDATE CASCADE;
 
-ALTER TABLE Timeline
-ADD FOREIGN KEY (Latest_Files, Project_id)
- REFERENCES Local_Files(Local_id, Project_id)
-ON DELETE SET NULL ON UPDATE CASCADE,
-ADD FOREIGN KEY (Latest_Version, Timeline_id, Project_id)
- REFERENCES "Version"(Version_id, Timeline_id, Project_id);
