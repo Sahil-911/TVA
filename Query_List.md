@@ -5,7 +5,7 @@
 ## Queries Related to Managing the Project
 - Create projects ✅
 - Invite contributors ✅
-- Analyse each contributor's gross contribution using aggregation operations @ShivangKacha
+- Analyse each contributor's gross contribution using aggregation operations [@Shivang Kacha](https://github.com/ShivangKacha)
 
 ## Queries Related to Timelines
 - Create new timelines ✅
