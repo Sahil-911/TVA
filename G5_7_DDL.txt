@@ -5,26 +5,26 @@ CREATE TABLE "User" (
     User_name VARCHAR(20) NOT NULL,
     PRIMARY KEY(User_id)
 );
-CREATE TABLE Project (
+CREATE TABLE "Project"(
     Project_id INT NOT NULL,
     Project_name VARCHAR(20) NOT NULL,
     Manager_id INT NOT NULL,
     PRIMARY KEY(Project_id)
 );
-CREATE TABLE Collaborator (
-    Project_id INT REFERENCES Project(Project_id)
+CREATE TABLE "Collaborator" (
+    Project_id INT REFERENCES "Project"(Project_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
     User_id INT REFERENCES "User"(User_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
     Role VARCHAR(20) NOT NULL,
     PRIMARY KEY (Project_id, User_id)
 );
-CREATE TABLE Timeline (
+CREATE TABLE "Timeline" (
     Timeline_id INT NOT NULL,
-    Project_id INT REFERENCES Project(Project_id)
+    Project_id INT REFERENCES "Project"(Project_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
-    Latest_Version INT NOT NULL,
-    Latest_Files INT NOT NULL,
+    Latest_Version INT,
+    Latest_Files INT,
     PRIMARY KEY (Project_id, Timeline_id)
 );
 CREATE TABLE "Version" (
@@ -33,7 +33,7 @@ CREATE TABLE "Version" (
     Version_id INT NOT NULL,
     Updater_id INT NOT NULL,
     CONSTRAINT Version_PFK FOREIGN KEY (Timeline_id, Project_id)
-     REFERENCES Timeline(Timeline_id, Project_id)
+     REFERENCES "Timeline"(Timeline_id, Project_id)
      ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (
         Timeline_id,
@@ -41,12 +41,12 @@ CREATE TABLE "Version" (
         Version_id
     )
 );
-CREATE TABLE Local_Files (
+CREATE TABLE "Local_Files" (
     Local_id INT NOT NULL,
-    Project_id INT REFERENCES Project(Project_id)
+    Project_id INT REFERENCES "Project"(Project_id)
      ON DELETE CASCADE ON UPDATE CASCADE,
     User_id INT,
-    Timeline_id INT DEFAULT 0 NOT NULL,
+    Timeline_id INT NOT NULL,
     PRIMARY KEY (Local_id, Project_id)
 );
 
@@ -56,9 +56,8 @@ CREATE TABLE "File" (
     File_id INT NOT NULL,
     File_name VARCHAR(20) NOT NULL,
     CONSTRAINT File_PFK FOREIGN KEY (Local_id, Project_id)
-     REFERENCES Local_Files(Local_id, Project_id)
+     REFERENCES "Local_Files"(Local_id, Project_id)
      ON DELETE CASCADE ON UPDATE CASCADE,
-    UNIQUE(File_id, Local_id, Project_id),
     PRIMARY KEY (
         Local_id,
         Project_id,
@@ -88,13 +87,14 @@ CREATE TABLE "Line" (
         Line_id
     )
 );
-CREATE TABLE Change (
+
+CREATE TABLE "Change" (
     Version_id INT NOT NULL,
     Timeline_id INT NOT NULL,
     Project_id INT NOT NULL,
     Line_id INT NOT NULL,
     File_id INT NOT NULL,
-    Local_id INT NOT NULL,
+	Local_id INT NOT NULL,
     Previous_content VARCHAR(1024) NOT NULL,
     New_content VARCHAR(1024) NOT NULL,
     CONSTRAINT Change_PFK FOREIGN KEY (
@@ -126,14 +126,13 @@ CREATE TABLE Change (
     )
 );
 
-ALTER TABLE Local_Files
-ADD FOREIGN KEY (User_id, Project_id) REFERENCES Collaborator(User_id, Project_id) ON
+ALTER TABLE "Local_Files"
+ADD FOREIGN KEY (User_id, Project_id) REFERENCES "Collaborator"(User_id, Project_id) ON
 DELETE
 SET NULL ON UPDATE CASCADE,
-ADD FOREIGN KEY (Timeline_id, Project_id) REFERENCES Timeline(Timeline_id, Project_id) ON
+ADD FOREIGN KEY (Timeline_id, Project_id) REFERENCES "Timeline"(Timeline_id, Project_id) ON
 DELETE
 SET NULL ON UPDATE CASCADE;
 ALTER TABLE "Version"
-ADD FOREIGN KEY (Updater_id, Project_id) REFERENCES "Collaborator"(User_id,Project_id) 
+ADD FOREIGN KEY (Updater_id, Project_id) REFERENCES "Collaborator"(User_id, Project_id)
 ON DELETE SET NULL ON UPDATE CASCADE;
-
