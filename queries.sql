@@ -189,8 +189,53 @@ FROM (
           and ch.first_version = change.version_id
      ) as t;
 
-     
 -- Merge two timelines ( 0 and 1)
+-- copy all files and lines which are not in timeline 0
+INSERT INTO "File" (File_id, Local_id, File_name, Project_id)
+SELECT File_id,
+     0 as Local_id,
+     File_name,
+     Project_id
+FROM "File"
+WHERE Local_id = 1
+     AND Project_id = 1
+     AND File_id NOT IN (
+          SELECT File_id
+          FROM "File"
+          WHERE Local_id = 0
+               AND Project_id = 1
+     );
+INSERT INTO "Line" (
+          Line_id,
+          File_id,
+          Local_id,
+          Project_id,
+          Content
+     )
+SELECT Line_id,
+     File_id,
+     0 as Local_id,
+     Project_id,
+     Content
+FROM "Line"
+WHERE Local_id = 1
+     AND Project_id = 1
+     AND Line_id NOT IN (
+          SELECT Line_id
+          FROM "Line"
+          WHERE Local_id = 0
+               AND Project_id = 1
+     );
+     
+-- remove latest_local of timeline 1
+DELETE FROM "Local_files"
+WHERE "Project_id" = 1
+     AND "Timeline_id" = 1;
+
+-- remove timeline 1
+DELETE FROM "Timeline"
+WHERE "Project_id" = 1
+     AND "Timeline_id" = 1; ( 0 and 1)
 -- copy all files and lines which are not in timeline 0
 INSERT INTO "File" (File_id, Local_id, File_name, Project_id)
 SELECT File_id,
