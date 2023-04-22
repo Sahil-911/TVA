@@ -156,18 +156,12 @@ WHERE "Line".Line_id = "Change".Line_id
      
      
      --version compare
-     set search_path to dbms_project;
-select * from timeline;
-select * from "User";
-select * from local_files;
-SELECT * FROM COLLABORATOR;
-select * from "Version";
-SELECT * FROM CHANGE;
-SELECT * FROM "Line";
-
-SELECT ch.line_id,ch.file_id,prev_content FROM (
-change JOIN (
-select MIN(version_id) as first_version,MAX(version_id) as last_version,line_id, file_id from 
-(select * from CHANGE as ch natural join (SELECT * from "Version" where version_id>=1 and version_id<=3 and project_id = 1 and timeline_id= 1) as ver) 
-as que group by line_id,file_id) as ch ON ch.line_id = change.line_id and ch.file_id=change.file_id and ch.first_version = change.version_id) as t;
-
+     
+select sm,mx,li as line_id,fi as file_id,firs.previous_content,cha.new_content from 
+	(select * from (select min(version_id) as sm,max(version_id) as mx,line_id as li,file_id as fi from change 
+	 where project_id=1 and timeline_id=1 group by line_id,file_id) as que 
+	join change as ch on que.li=ch.line_id and que.fi=ch.file_id and sm=ch.version_id where project_id=1 and timeline_id=1) as firs 
+ join change as cha on firs.li=cha.line_id and firs.fi=cha.file_id and mx=cha.version_id where cha.project_id=1 and cha.timeline_id=1 and sm>=2 and mx<=4;
+ 
+ 
+ 
