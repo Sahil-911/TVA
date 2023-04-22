@@ -71,7 +71,7 @@ INSERT INTO "Line" VALUES(1,1,2,19,'What do you call a bird that is good at come
 INSERT INTO "Line" VALUES(1,1,2,20,'What do you call a cow that is good at yoga? A moo-dra.');
 						  
 
-INSERT INTO "Line" VALUES(3,1,3,16,'What do you call a horse that is good at racing? A fast-trotter.');
+INSERT INTO "Line" VALUES(3,1,3,16,'What do you call a horse that is go od at racing? A fast-trotter.');
 INSERT INTO "Line" VALUES(3,1,3,17,'"The best way to predict the future is to create it." - Peter Drucker');
 INSERT INTO "Line" VALUES(3,1,3,18,'"Believe you can and youre halfway there." - Theodore Roosevelt');
 INSERT INTO "Line" VALUES(3,1,3,19,'"Be the change you wish to see in the world." - Mahatma Gandhi');
@@ -126,72 +126,72 @@ INSERT INTO "Line" VALUES(1,2,5,20,'I love to paint and express myself through a
 -- Update the content of the line with the given local_id, project_id, file_id, and line_id.
 --Line(local_id,project_id,file_id,line_id,content);
 
-UPDATE Line SET content = 'The Enddd' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 1;
-UPDATE Line SET content = 'Are you a coffee? Because you are hot and sweet.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 2;
-UPDATE Line SET content = 'Are you a candy? Because you are a treat' WHERE local_id = 3 AND project_id = 3 AND file_id = 1 AND line_id = 3;
-UPDATE Line SET content = 'Are you a firework? Because you are explosive and colorful.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 4;
-UPDATE Line SET content = 'Are you a diamond? Because you are precious and rare.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 5;
+UPDATE "Line" SET content = 'The Enddd' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 1;
+UPDATE "Line" SET content = 'Are you a coffee? Because you are hot and sweet.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 2;
+UPDATE "Line" SET content = 'Are you a candy? Because you are a treat' WHERE local_id = 3 AND project_id = 3 AND file_id = 1 AND line_id = 3;
+UPDATE "Line" SET content = 'Are you a firework? Because you are explosive and colorful.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 4;
+UPDATE "Line" SET content = 'Are you a diamond? Because you are precious and rare.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 5;
 
 
-UPDATE Line SET content = 'Are you a rainbow? Because you brighten up my day.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 1;
-UPDATE Line SET content = 'Are you a puzzle? Because I want to piece you together.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 2;
-UPDATE Line SET content = 'Are you a phone? Because I want to hold you and talk to you.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 3;
-UPDATE Line SET content = 'Are you a painting? Because you are a masterpiece.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 4;
-UPDATE Line SET content = 'Are you a key? Because you unlock my heart.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 5;
+UPDATE "Line" SET content = 'Are you a rainbow? Because you brighten up my day.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 1;
+UPDATE "Line" SET content = 'Are you a puzzle? Because I want to piece you together.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 2;
+UPDATE "Line" SET content = 'Are you a phone? Because I want to hold you and talk to you.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 3;
+UPDATE "Line" SET content = 'Are you a painting? Because you are a masterpiece.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 4;
+UPDATE "Line" SET content = 'Are you a key? Because you unlock my heart.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 5;
 
-UPDATE Line SET content = 'The sky was painted in shades of orange and pink as the sun set over the horizon.' WHERE local_id = 4 AND project_id = 1 AND file_id = 3 AND line_id = 11;
-UPDATE Line SET content = 'The EndddShe picked up the book and started reading, losing herself in the story.' WHERE local_id = 4 AND project_id = 1 AND file_id = 3 AND line_id = 12;
-UPDATE Line SET content = 'The sound of the waves crashing against the shore was soothing.' WHERE local_id = 4 AND project_id = 1 AND file_id = 3 AND line_id = 13;
-UPDATE Line SET content = 'He couldnt believe his eyes when he saw the size of the fish he had caught.He couldnt believe his eyes when he saw the size of the fish he had caught.' WHERE local_id = 4 AND project_id = 1 AND file_id = 3 AND line_id = 14;
-UPDATE Line SET content = 'The aroma of freshly baked bread filled the air.' WHERE local_id = 4 AND project_id = 1 AND file_id = 3 AND line_id = 15;
-
-
-UPDATE Line SET content = 'The birds chirped happily as they flitted from tree to tree.' WHERE local_id = 4 AND project_id = 1 AND file_id = 4 AND line_id = 6;
-UPDATE Line SET content = 'The warmth of the sun on her skin made her feel alive.' WHERE local_id = 4 AND project_id = 1 AND file_id = 4 AND line_id = 7;
-UPDATE Line SET content = 'The laughter of children playing in the park brought a smile to his face.' WHERE local_id = 4 AND project_id = 1 AND file_id = 4 AND line_id = 8;
-UPDATE Line SET content = 'The smell of freshly brewed coffee woke him up from his sleep.' WHERE local_id = 4 AND project_id = 1 AND file_id = 4 AND line_id = 9;
-UPDATE Line SET content = 'The sound of rain tapping against the window was calming.' WHERE local_id = 4 AND project_id = 1 AND file_id = 4 AND line_id = 10;
+UPDATE "Line" SET content = 'The sky was painted in shades of orange and pink as the sun set over the horizon.' WHERE local_id = 4 AND project_id = 1 AND file_id = 3 AND line_id = 11;
+UPDATE "Line" SET content = 'The EndddShe picked up the book and started reading, losing herself in the story.' WHERE local_id = 4 AND project_id = 1 AND file_id = 3 AND line_id = 12;
+UPDATE "Line" SET content = 'The sound of the waves crashing against the shore was soothing.' WHERE local_id = 4 AND project_id = 1 AND file_id = 3 AND line_id = 13;
+UPDATE "Line" SET content = 'He couldnt believe his eyes when he saw the size of the fish he had caught.He couldnt believe his eyes when he saw the size of the fish he had caught.' WHERE local_id = 4 AND project_id = 1 AND file_id = 3 AND line_id = 14;
+UPDATE "Line" SET content = 'The aroma of freshly baked bread filled the air.' WHERE local_id = 4 AND project_id = 1 AND file_id = 3 AND line_id = 15;
 
 
-UPDATE Line SET content = 'She took a deep breath and plunged into the icy water.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 1;
-UPDATE Line SET content = 'She closed her eyes and let the music wash over her.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 3;
-UPDATE Line SET content = 'He couldnt resist the temptation of the chocolate cake.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 5;
-UPDATE Line SET content = 'The rustling of leaves under his feet was a familiar sound.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 7;
-UPDATE Line SET content = 'The crackling of the fire in the fireplace was comforting.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 9;
+UPDATE "Line" SET content = 'The birds chirped happily as they flitted from tree to tree.' WHERE local_id = 4 AND project_id = 1 AND file_id = 4 AND line_id = 6;
+UPDATE "Line" SET content = 'The warmth of the sun on her skin made her feel alive.' WHERE local_id = 4 AND project_id = 1 AND file_id = 4 AND line_id = 7;
+UPDATE "Line" SET content = 'The laughter of children playing in the park brought a smile to his face.' WHERE local_id = 4 AND project_id = 1 AND file_id = 4 AND line_id = 8;
+UPDATE "Line" SET content = 'The smell of freshly brewed coffee woke him up from his sleep.' WHERE local_id = 4 AND project_id = 1 AND file_id = 4 AND line_id = 9;
+UPDATE "Line" SET content = 'The sound of rain tapping against the window was calming.' WHERE local_id = 4 AND project_id = 1 AND file_id = 4 AND line_id = 10;
 
 
-UPDATE Line SET content = 'The sky was clear and blue, but the wind was cold and harsh I wished I had a coat or scarf, or something warm to wrap' WHERE local_id = 3 AND project_id = 2 AND file_id = 1 AND line_id = 1;
-UPDATE Line SET content = 'She loved to read books, especially the ones with happy endings She felt like she was living in a fairy tale with princes and princesses' WHERE local_id = 3 AND project_id = 2 AND file_id = 1 AND line_id = 1;
-UPDATE Line SET content = 'He couldnt believe his luck when he found the winning lottery ticket in his pocket He ran to the nearest store to claim his prize, but he forgot to lock it' WHERE local_id = 3 AND project_id = 2 AND file_id = 1 AND line_id = 1;
-UPDATE Line SET content = 'They decided to go for a hike in the woods, but they got lost and had to spend the night in a cave They heard some strange noises and saw some glowing eyes, they hoped someone would come and save' WHERE local_id = 3 AND project_id = 2 AND file_id = 1 AND line_id = 1;
-UPDATE Line SET content = 'She always dreamed of becoming a singer, but she was too shy to perform in front of an audience She practiced in her room every day, hoping to overcome her nervousness' WHERE local_id = 3 AND project_id = 2 AND file_id = 1 AND line_id = 1;
+UPDATE "Line" SET content = 'She took a deep breath and plunged into the icy water.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 1;
+UPDATE "Line" SET content = 'She closed her eyes and let the music wash over her.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 3;
+UPDATE "Line" SET content = 'He couldnt resist the temptation of the chocolate cake.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 5;
+UPDATE "Line" SET content = 'The rustling of leaves under his feet was a familiar sound.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 7;
+UPDATE "Line" SET content = 'The crackling of the fire in the fireplace was comforting.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 9;
 
 
-UPDATE Line SET content = 'He was fascinated by the stars and planets, and wanted to be an astronaut someday He studied hard and learned a lot, he knew he would find a way' WHERE local_id = 3 AND project_id = 2 AND file_id = 2 AND line_id = 2;
-UPDATE Line SET content = 'She hated broccoli, but her mom made her eat it anyway She tried to hide it under her plate, but her mom saw it right away' WHERE local_id = 3 AND project_id = 2 AND file_id = 2 AND line_id = 3;
-UPDATE Line SET content = 'He was afraid of heights, but he agreed to go on the roller coaster with his friends He closed his eyes and screamed out loud, he hoped it would soon end' WHERE local_id = 3 AND project_id = 2 AND file_id = 2 AND line_id = 4;
-UPDATE Line SET content = 'She was allergic to cats, but she couldnt resist petting the cute kitten on the street She sneezed and coughed and itched all over, but she still thought it was sweet' WHERE local_id = 3 AND project_id = 2 AND file_id = 2 AND line_id = 6;
-UPDATE Line SET content = 'He loved to play video games, but he had to finish his homework first He rushed through his assignments and made some mistakes, but he didnt care about the worst' WHERE local_id = 3 AND project_id = 2 AND file_id = 2 AND line_id = 8;
-
-UPDATE Line SET content = 'Are you a camera? Because you make me smile.' WHERE local_id = 4 AND project_id = 2 AND file_id = 3 AND line_id = 2;
-UPDATE Line SET content = 'Are you a magician? Because every time I look at you, everyone else disappears.' WHERE local_id = 4 AND project_id = 2 AND file_id = 3 AND line_id = 3;
-UPDATE Line SET content = 'Are you a bank loan? Because youve got my interest.' WHERE local_id = 4 AND project_id = 2 AND file_id = 3 AND line_id = 4;
-UPDATE Line SET content = 'Are you a Netflix show? Because I want to binge watch you all night.' WHERE local_id = 4 AND project_id = 2 AND file_id = 3 AND line_id = 7;
-UPDATE Line SET content = 'Are you a star? Because youre the only thing I see in the sky.' WHERE local_id = 4 AND project_id = 2 AND file_id = 3 AND line_id = 11;
+UPDATE "Line" SET content = 'The sky was clear and blue, but the wind was cold and harsh I wished I had a coat or scarf, or something warm to wrap' WHERE local_id = 3 AND project_id = 2 AND file_id = 1 AND line_id = 1;
+UPDATE "Line" SET content = 'She loved to read books, especially the ones with happy endings She felt like she was living in a fairy tale with princes and princesses' WHERE local_id = 3 AND project_id = 2 AND file_id = 1 AND line_id = 1;
+UPDATE "Line" SET content = 'He couldnt believe his luck when he found the winning lottery ticket in his pocket He ran to the nearest store to claim his prize, but he forgot to lock it' WHERE local_id = 3 AND project_id = 2 AND file_id = 1 AND line_id = 1;
+UPDATE "Line" SET content = 'They decided to go for a hike in the woods, but they got lost and had to spend the night in a cave They heard some strange noises and saw some glowing eyes, they hoped someone would come and save' WHERE local_id = 3 AND project_id = 2 AND file_id = 1 AND line_id = 1;
+UPDATE "Line" SET content = 'She always dreamed of becoming a singer, but she was too shy to perform in front of an audience She practiced in her room every day, hoping to overcome her nervousness' WHERE local_id = 3 AND project_id = 2 AND file_id = 1 AND line_id = 1;
 
 
-UPDATE Line SET content = 'Are you a song? Because youre music to my ears.' WHERE local_id = 4 AND project_id = 2 AND file_id = 4 AND line_id = 11;
-UPDATE Line SET content = 'Are you a pizza? Because youre cheesy and delicious.' WHERE local_id = 4 AND project_id = 2 AND file_id = 4 AND line_id = 12;
-UPDATE Line SET content = 'Are you a flower? Because youre blooming beautiful.' WHERE local_id = 4 AND project_id = 2 AND file_id = 4 AND line_id = 14;
-UPDATE Line SET content = 'Are you a candy? Because youre sweet and addictive.' WHERE local_id = 4 AND project_id = 2 AND file_id = 4 AND line_id = 15;
-UPDATE Line SET content = 'Are you a joke? Because you make me laugh out loud.' WHERE local_id = 4 AND project_id = 2 AND file_id = 4 AND line_id = 18;
+UPDATE "Line" SET content = 'He was fascinated by the stars and planets, and wanted to be an astronaut someday He studied hard and learned a lot, he knew he would find a way' WHERE local_id = 3 AND project_id = 2 AND file_id = 2 AND line_id = 2;
+UPDATE "Line" SET content = 'She hated broccoli, but her mom made her eat it anyway She tried to hide it under her plate, but her mom saw it right away' WHERE local_id = 3 AND project_id = 2 AND file_id = 2 AND line_id = 3;
+UPDATE "Line" SET content = 'He was afraid of heights, but he agreed to go on the roller coaster with his friends He closed his eyes and screamed out loud, he hoped it would soon end' WHERE local_id = 3 AND project_id = 2 AND file_id = 2 AND line_id = 4;
+UPDATE "Line" SET content = 'She was allergic to cats, but she couldnt resist petting the cute kitten on the street She sneezed and coughed and itched all over, but she still thought it was sweet' WHERE local_id = 3 AND project_id = 2 AND file_id = 2 AND line_id = 6;
+UPDATE "Line" SET content = 'He loved to play video games, but he had to finish his homework first He rushed through his assignments and made some mistakes, but he didnt care about the worst' WHERE local_id = 3 AND project_id = 2 AND file_id = 2 AND line_id = 8;
+
+UPDATE "Line" SET content = 'Are you a camera? Because you make me smile.' WHERE local_id = 4 AND project_id = 2 AND file_id = 3 AND line_id = 2;
+UPDATE "Line" SET content = 'Are you a magician? Because every time I look at you, everyone else disappears.' WHERE local_id = 4 AND project_id = 2 AND file_id = 3 AND line_id = 3;
+UPDATE "Line" SET content = 'Are you a bank loan? Because youve got my interest.' WHERE local_id = 4 AND project_id = 2 AND file_id = 3 AND line_id = 4;
+UPDATE "Line" SET content = 'Are you a Netflix show? Because I want to binge watch you all night.' WHERE local_id = 4 AND project_id = 2 AND file_id = 3 AND line_id = 7;
+UPDATE "Line" SET content = 'Are you a star? Because youre the only thing I see in the sky.' WHERE local_id = 4 AND project_id = 2 AND file_id = 3 AND line_id = 11;
 
 
-UPDATE Line SET content = 'Hwy i am Om Gor !!!' WHERE local_id = 4 AND project_id = 2 AND file_id = 5 AND line_id = 3;
-UPDATE Line SET content = 'Today is saturday' WHERE local_id = 4 AND project_id = 2 AND file_id = 5 AND line_id = 7;
-UPDATE Line SET content = 'kal sunday hai !!' WHERE local_id = 4 AND project_id = 2 AND file_id = 5 AND line_id = 9;
-UPDATE Line SET content = 'this is second last line ' WHERE local_id = 4 AND project_id = 2 AND file_id = 5 AND line_id = 11;
-UPDATE Line SET content = 'this is last line' WHERE local_id = 4 AND project_id = 2 AND file_id = 5 AND line_id = 19;
+UPDATE "Line" SET content = 'Are you a song? Because youre music to my ears.' WHERE local_id = 4 AND project_id = 2 AND file_id = 4 AND line_id = 11;
+UPDATE "Line" SET content = 'Are you a pizza? Because youre cheesy and delicious.' WHERE local_id = 4 AND project_id = 2 AND file_id = 4 AND line_id = 12;
+UPDATE "Line" SET content = 'Are you a flower? Because youre blooming beautiful.' WHERE local_id = 4 AND project_id = 2 AND file_id = 4 AND line_id = 14;
+UPDATE "Line" SET content = 'Are you a candy? Because youre sweet and addictive.' WHERE local_id = 4 AND project_id = 2 AND file_id = 4 AND line_id = 15;
+UPDATE "Line" SET content = 'Are you a joke? Because you make me laugh out loud.' WHERE local_id = 4 AND project_id = 2 AND file_id = 4 AND line_id = 18;
+
+
+UPDATE "Line" SET content = 'Hwy i am Om Gor !!!' WHERE local_id = 4 AND project_id = 2 AND file_id = 5 AND line_id = 3;
+UPDATE "Line" SET content = 'Today is saturday' WHERE local_id = 4 AND project_id = 2 AND file_id = 5 AND line_id = 7;
+UPDATE "Line" SET content = 'kal sunday hai !!' WHERE local_id = 4 AND project_id = 2 AND file_id = 5 AND line_id = 9;
+UPDATE "Line" SET content = 'this is second last line ' WHERE local_id = 4 AND project_id = 2 AND file_id = 5 AND line_id = 11;
+UPDATE "Line" SET content = 'this is last line' WHERE local_id = 4 AND project_id = 2 AND file_id = 5 AND line_id = 19;
 
 
 INSERT INTO "Line" VALUES(1,1,2,1,'They built a life together');
