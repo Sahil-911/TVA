@@ -142,7 +142,6 @@ FROM (
           AND "Local_1".File_id = "Local_2".File_id
      )
 WHERE "Local_1".Content != "Local_2".Content;
-
 -- Revert to the previous version
 UPDATE "Line"
 SET "Content" = "Change".Previous_content
@@ -152,34 +151,103 @@ WHERE "Line".Line_id = "Change".Line_id
      AND "Change".Version_id = 1
      AND "Change".Timeline_id = 1
      AND "Change".Project_id = 1;
-     
-     
-     
-     --version compare
-     
-select sm,mx,li as line_id,fi as file_id,firs.previous_content,cha.new_content 
-from (select * from 
-      (select min(version_id) as sm,max(version_id) as mx,line_id as li,file_id as fi 
-       from change where project_id=1 and timeline_id=1 group by line_id,file_id) as que 
-	join change as ch on que.li=ch.line_id and que.fi=ch.file_id and sm=ch.version_id 
-      where project_id=1 and timeline_id=1) as firs 
- join change as cha on firs.li=cha.line_id and firs.fi=cha.file_id and mx=cha.version_id 
- where cha.project_id=1 and cha.timeline_id=1 and sm>=2 and mx<=4;
- 
- 
- --💥 Show file history line-wise ❗ 
-  select version_id,timeline_id,file_id,line_id,previous_content,new_content,user_name as updater_name 
-  from ((select * from 
-	 (select max(version_id) as mx,line_id as li from change 
-	where project_id=1 and timeline_id=1 and file_id=1 group by line_id) as que 
-	join change as ch on que.li=ch.line_id and mx=ch.version_id 
-	 where project_id=1 and timeline_id=1 and file_id=1) as fir
-	natural join "Version") as sec join "User" on updater_id=user_id ;
-	
-	
+--version compare
+select sm,
+     mx,
+     li as line_id,
+     fi as file_id,
+     firs.previous_content,
+     cha.new_content
+from (
+          select *
+          from (
+                    select min(version_id) as sm,
+                         max(version_id) as mx,
+                         line_id as li,
+                         file_id as fi
+                    from change
+                    where project_id = 1
+                         and timeline_id = 1
+                    group by line_id,
+                         file_id
+               ) as que
+               join change as ch on que.li = ch.line_id
+               and que.fi = ch.file_id
+               and sm = ch.version_id
+          where project_id = 1
+               and timeline_id = 1
+     ) as firs
+     join change as cha on firs.li = cha.line_id
+     and firs.fi = cha.file_id
+     and mx = cha.version_id
+where cha.project_id = 1
+     and cha.timeline_id = 1
+     and sm >= 2
+     and mx <= 4;
+--💥 Show file history line-wise ❗ 
+select version_id,
+     timeline_id,
+     file_id,
+     line_id,
+     previous_content,
+     new_content,
+     user_name as updater_name
+from (
+          (
+               select *
+               from (
+                         select max(version_id) as mx,
+                              line_id as li
+                         from change
+                         where project_id = 1
+                              and timeline_id = 1
+                              and file_id = 1
+                         group by line_id
+                    ) as que
+                    join change as ch on que.li = ch.line_id
+                    and mx = ch.version_id
+               where project_id = 1
+                    and timeline_id = 1
+                    and file_id = 1
+          ) as fir
+          natural join "Version"
+     ) as sec
+     join "User" on updater_id = user_id;
 --Analyse each contributor's gross contribution using aggregation operations
- select user_id,user_name,change from (select COUNT(*) as change,user_id 
-from (change natural join "Version") as ch join "User" on user_id=updater_id 
-where project_id=1 group by user_id) as e natural join "User" ;
-	
-	
+select user_id,
+     user_name,
+     change
+from (
+          select COUNT(*) as change,
+               user_id
+          from (
+                    change
+                    natural join "Version"
+               ) as ch
+               join "User" on user_id = updater_id
+          where project_id = 1
+          group by user_id
+     ) as e
+     natural join "User";
+-- merge conflicts (compare latest versions of two timelines)
+
+select t1.line_id,
+     t1.file_id,
+     t1.content as t1_content,
+     t2.content as t2_content
+from (
+          (
+               select *
+               from "Line"
+               where local_id = 1
+                    and project_id = 1
+          ) as t1
+          JOIN (
+               select *
+               from "Line"
+               where local_id = 2
+                    and project_id = 1
+          ) as t2 ON t1.line_id = t2.line_id
+          and t1.file_id = t2.file_id
+     )
+where t1.content != t2.content;
