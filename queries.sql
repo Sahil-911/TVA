@@ -240,19 +240,19 @@ from (
                          max(version_id) as mx,
                          line_id as li,
                          file_id as fi
-                    from change
+                    from "Change"
                     where project_id = 1
                          and timeline_id = 1
                     group by line_id,
                          file_id
                ) as que
-               join change as ch on que.li = ch.line_id
+               join "Change" as ch on que.li = ch.line_id
                and que.fi = ch.file_id
                and sm = ch.version_id
           where project_id = 1
                and timeline_id = 1
      ) as firs
-     join change as cha on firs.li = cha.line_id
+     join "Change" as cha on firs.li = cha.line_id
      and firs.fi = cha.file_id
      and mx = cha.version_id
 where cha.project_id = 1
@@ -273,13 +273,13 @@ from (
                from (
                          select max(version_id) as mx,
                               line_id as li
-                         from change
+                         from "Change"
                          where project_id = 1
                               and timeline_id = 1
                               and file_id = 1
                          group by line_id
                     ) as que
-                    join change as ch on que.li = ch.line_id
+                    join "Change" as ch on que.li = ch.line_id
                     and mx = ch.version_id
                where project_id = 1
                     and timeline_id = 1
@@ -291,12 +291,12 @@ from (
 --Analyse each contributor's gross contribution using aggregation operations
 select user_id,
      user_name,
-     change
+     "Change"
 from (
-          select COUNT(*) as change,
+          select COUNT(*) as "Change",
                user_id
           from (
-                    change
+                    "Change"
                     natural join "Version"
                ) as ch
                join "User" on user_id = updater_id
