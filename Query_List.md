@@ -16,7 +16,6 @@
 - 💥 Set the latest version in current timeline 
 - 💥 Revert to the previous version ✅
 - Compare with any version in current timeline ❗ [@Shivang Kacha](https://github.com/ShivangKacha)
-- 💥 See the last change the given line ❗
 
 ## Queries Related to File changes
 - Add a line in a file ✅
