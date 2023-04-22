@@ -132,6 +132,13 @@ UPDATE "Line" SET content = 'Are you a candy? Because you are a treat' WHERE loc
 UPDATE "Line" SET content = 'Are you a firework? Because you are explosive and colorful.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 4;
 UPDATE "Line" SET content = 'Are you a diamond? Because you are precious and rare.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 5;
 
+UPDATE "Line" SET content = 'The wind whispers secrets in your ear' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 15;
+UPDATE "Line" SET content = 'The birds sing a melody of joy and freedom.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 16;
+UPDATE "Line" SET content = 'The river flows with grace and wisdom.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 17;
+UPDATE "Line" SET content = 'The clouds are like cotton candy in the sky.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 18;
+UPDATE "Line" SET content = 'The fire crackles with warmth and light.' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 19;
+UPDATE "Line" SET content = 'The rain is a blessing from the sky' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 20;
+
 
 UPDATE "Line" SET content = 'Are you a rainbow? Because you brighten up my day.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 1;
 UPDATE "Line" SET content = 'Are you a puzzle? Because I want to piece you together.' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 2;
