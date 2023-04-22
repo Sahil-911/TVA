@@ -125,6 +125,7 @@ INSERT INTO "Line" VALUES(1,2,5,20,'I love to paint and express myself through a
 
 -- Update the content of the line with the given local_id, project_id, file_id, and line_id.
 --Line(local_id,project_id,file_id,line_id,content);
+
 UPDATE Line SET content = 'The Enddd' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 1;
 UPDATE Line SET content = 'Are you a coffee? Because you’re hot and sweet.' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 2;
 UPDATE Line SET content = 'Are you a candy? Because you’re a treat' WHERE local_id = 1 AND project_id = 1 AND file_id = 1 AND line_id = 3;
@@ -191,5 +192,122 @@ UPDATE Line SET content = 'Today is saturday' WHERE local_id = 1 AND project_id 
 UPDATE Line SET content = 'kal sunday hai !!' WHERE local_id = 1 AND project_id = 2 AND file_id = 5 AND line_id = 9;
 UPDATE Line SET content = 'this is second last line ' WHERE local_id = 1 AND project_id = 2 AND file_id = 5 AND line_id = 11;
 UPDATE Line SET content = 'this is last line' WHERE local_id = 1 AND project_id = 2 AND file_id = 5 AND line_id = 19;
+
+UPDATE Line SET content = 'The Enddd' WHERE local_id = 3 AND project_id = 1 AND file_id = 1 AND line_id = 1;
+UPDATE Line SET content = 'This line is Updated' WHERE local_id = 3 AND project_id = 1 AND file_id = 4 AND line_id = 1;
+UPDATE Line SET content = 'It matters the most' WHERE local_id = 3 AND project_id = 1 AND file_id = 2 AND line_id = 4;
+UPDATE Line SET content = 'yeah, this story is just a joke' WHERE local_id = 3 AND project_id = 1 AND file_id = 3 AND line_id = 4;
+UPDATE Line SET content = 'My name is SAHIL' WHERE local_id = 1 AND project_id = 2 AND file_id = 5 AND line_id = 9;
+UPDATE Line SET content = 'No one is virgin, life f*cks everyone.' WHERE local_id = 3 AND project_id = 2 AND file_id = 3 AND line_id = 10;
+UPDATE Line SET content = 'How are you, sir?' WHERE local_id = 1 AND project_id = 2 AND file_id = 2 AND line_id = 6;
+UPDATE Line SET content = 'OK,The Enddd' WHERE local_id = 1 AND project_id = 2 AND file_id = 5 AND line_id = 10;
+
+INSERT INTO "Line" VALUES(1,1,2,1,'They built a life together');
+INSERT INTO "Line" VALUES(1,1,2,2,'full of love and laughter');
+INSERT INTO "Line" VALUES(1,1,2,3,'And even though they were different');
+INSERT INTO "Line" VALUES(1,1,2,4,'it didnt matter');
+INSERT INTO "Line" VALUES(1,1,2,5,'For they had found something special in each other');
+
+INSERT INTO "Line" VALUES(2,1,3,1,' A love that would last forever and ever');
+INSERT INTO "Line" VALUES(2,1,3,2,'I hope you enjoyed this love story! ');
+INSERT INTO "Line" VALUES(2,1,3,3,'This was just a story');
+INSERT INTO "Line" VALUES(2,1,3,4,'dont take this story too seriously');
+INSERT INTO "Line" VALUES(2,1,3,5,'The_End');
+
+INSERT INTO "Line" VALUES(2,1,4,1,'This is first line');
+INSERT INTO "Line" VALUES(2,1,4,2,'This is second line');
+INSERT INTO "Line" VALUES(2,1,4,3,'This is third line');
+INSERT INTO "Line" VALUES(2,1,4,4,'This is forth line');
+INSERT INTO "Line" VALUES(2,1,4,5,'This is fifth line');
+
+INSERT INTO "Line" VALUES(2,1,5,1,'The sun sets, and the world turns to a gentle slumber.');
+INSERT INTO "Line" VALUES(2,1,5,2,'The smell of freshly cut grass fills the air, bringing joy to my senses.');
+INSERT INTO "Line" VALUES(2,1,5,3,'The sound of laughter is the music of the soul.');
+INSERT INTO "Line" VALUES(2,1,5,4,'The stars twinkle like diamonds in the sky, reminding us of the beauty in the world.');
+INSERT INTO "Line" VALUES(2,1,5,5,'A warm hug can make everything feel better.');
+						 
+INSERT INTO "Line" VALUES(1,2,1,1,'The colors of autumn paint the world with their own special magic');
+INSERT INTO "Line" VALUES(1,2,1,2,'A kind word can brighten someones day.');
+INSERT INTO "Line" VALUES(1,2,1,3,'A simple smile can light up a room.');
+INSERT INTO "Line" VALUES(1,2,1,4,'The sound of waves crashing against the shore is soothing to the soul.');
+INSERT INTO "Line" VALUES(1,2,1,5,'The touch of a loved one is the most comforting feeling in the world.');
+
+INSERT INTO "Line" VALUES(2,2,2,1,'Watching a butterfly flutter by can bring a moment of peace.');
+INSERT INTO "Line" VALUES(2,2,2,2,'The smell of fresh baked bread is a reminder of the simple joys in life.');
+INSERT INTO "Line" VALUES(2,2,2,3,'The gentle rustling of leaves on a quiet afternoon is the perfect lullaby.');
+INSERT INTO "Line" VALUES(2,2,2,4,'A cup of tea and a good book are the perfect way to unwind.');
+INSERT INTO "Line" VALUES(2,2,2,5,'The first snowfall of the season is a magical moment.');
+						  
+INSERT INTO "Line" VALUES(2,2,2,1,'The sound of rain tapping against the window is both peaceful and comforting.');
+INSERT INTO "Line" VALUES(2,2,2,2,'The feeling of sand between your toes is a simple pleasure that never gets old.');
+INSERT INTO "Line" VALUES(2,2,3,3,'The rustling of pages turning in a book is music to the ears.');
+INSERT INTO "Line" VALUES(2,2,3,4,'The sound of a childs laughter is infectious.');
+INSERT INTO "Line" VALUES(2,2,3,5,'The feeling of the sun on your skin is rejuvenating.');
+						  
+INSERT INTO "Line" VALUES(2,2,4,1,'A cozy blanket and a warm fire make for the perfect evening');
+INSERT INTO "Line" VALUES(2,2,4,2,'The smell of a bouquet of flowers is uplifting.');
+INSERT INTO "Line" VALUES(2,2,4,3,'The sight of a beautiful sunset can take your breath away.');
+INSERT INTO "Line" VALUES(2,2,4,4,'The first sip of coffee in the morning is a moment of pure bliss.');
+INSERT INTO "Line" VALUES(2,2,4,5,'A gentle breeze on a warm day is a welcome relief.');
+						  
+INSERT INTO "Line" VALUES(1,2,5,1,'The sound of a purring cat can soothe the soul.');
+INSERT INTO "Line" VALUES(1,2,5,2,'The taste of homemade apple pie is the epitome of comfort food.');
+INSERT INTO "Line" VALUES(1,2,5,3,'The colors of a rainbow are a reminder of the beauty in diversity.');
+INSERT INTO "Line" VALUES(1,2,5,4,'The smell of fresh air after a rainstorm is invigorating.');
+INSERT INTO "Line" VALUES(1,2,5,5,'The feeling of grass beneath your feet is grounding.');	
+
+INSERT INTO "Line" VALUES(1,1,2,6,'"Life is a journey, and if you fall in love with the journey, you will be in love forever." - Peter Hagerty');
+INSERT INTO "Line" VALUES(1,1,2,7,'"The greatest glory in living lies not in never falling, but in rising every time we fall." - Nelson Mandela');
+INSERT INTO "Line" VALUES(1,1,2,8,'"Dont count the days, make the days count." - Muhammad Ali');
+INSERT INTO "Line" VALUES(1,1,2,9,'"The only way to do great work is to love what you do." - Steve Jobs');
+INSERT INTO "Line" VALUES(1,1,2,10,'"Success is not final, failure is not fatal: it is the courage to continue that counts." - Winston Churchill');
+
+INSERT INTO "Line" VALUES(2,1,3,6,'"Happiness is not something ready made. It comes from your own actions." - Dalai Lama');
+INSERT INTO "Line" VALUES(2,1,3,7,'"The best way to predict the future is to create it." - Peter Drucker');
+INSERT INTO "Line" VALUES(2,1,3,8,'"Believe you can and youre halfway there." - Theodore Roosevelt');
+INSERT INTO "Line" VALUES(2,1,3,9,'"Be the change you wish to see in the world." - Mahatma Gandhi');
+INSERT INTO "Line" VALUES(2,1,3,10,'"Life is 10% what happens to you and 90% how you react to it." - Charles R. Swindoll');						  
+
+INSERT INTO "Line" VALUES(2,1,4,6,'"Dont watch the clock; do what it does. Keep going." - Sam Levenson');
+INSERT INTO "Line" VALUES(2,1,4,7,'"Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful." - Albert Schweitzer');
+INSERT INTO "Line" VALUES(2,1,4,8,'"The future belongs to those who believe in the beauty of their dreams." - Eleanor Roosevelt');
+INSERT INTO "Line" VALUES(2,1,4,9,'"Be yourself; everyone else is already taken." - Oscar Wilde');
+INSERT INTO "Line" VALUES(2,1,4,10,'"It does not matter how slowly you go as long as you do not stop." - Confucius');
+
+INSERT INTO "Line" VALUES(2,1,5,6,'"Success is stumbling from failure to failure with no loss of enthusiasm." - Winston Churchill');
+INSERT INTO "Line" VALUES(2,1,5,7,'"The only limit to our realization of tomorrow will be our doubts of today." - Franklin D. Roosevelt');
+INSERT INTO "Line" VALUES(2,1,5,8,'"The best revenge is massive success." - Frank Sinatra');
+INSERT INTO "Line" VALUES(2,1,5,9,'"What you get by achieving your goals is not as important as what you become by achieving your goals." - Zig Ziglar');
+INSERT INTO "Line" VALUES(2,1,5,10,'"In three words I can sum up everything Ive learned about life: it goes on." - Robert Frost');
+
+INSERT INTO "Line" VALUES(1,2,1,6,'"Be the change that you wish to see in the world." - Mahatma Gandhi');
+INSERT INTO "Line" VALUES(1,2,1,7,'"You miss 100% of the shots you dont take." - Wayne Gretzky.');
+INSERT INTO "Line" VALUES(1,2,1,8,'"Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle." - Christian D. Larson');
+INSERT INTO "Line" VALUES(1,2,1,9,'"The only way to do great work is to love what you do. If you havent found it yet, keep looking. Dont settle. As with all matters of the heart, youll know when you find it." - Steve Jobs');
+INSERT INTO "Line" VALUES(1,2,1,10,'Your time is limited, dont waste it by living someone elses life." - Steve Jobs');
+
+INSERT INTO "Line" VALUES(2,2,2,6,'Your time is limited, dont waste it by living someone elses life." - Steve Jobs');
+INSERT INTO "Line" VALUES(2,2,2,7,'"You are never too old to set another goal or to dream a new dream." - C.S. Lewis');
+INSERT INTO "Line" VALUES(2,2,2,8,'The gentle rustling of leaves on a quiet afternoon is the perfect lullaby.');
+INSERT INTO "Line" VALUES(2,2,2,9,'"The only person you are destined to become is the person you decide to be." - Ralph Waldo Emerson');
+INSERT INTO "Line" VALUES(2,2,2,10,'"There is no substitute for hard work." - Thomas Edison');
+						  
+INSERT INTO "Line" VALUES(2,2,3,6,'"The only true wisdom is in knowing you know nothing." - Socrates');
+INSERT INTO "Line" VALUES(2,2,3,7,'"It always seems impossible until its done." - Nelson Mandela');
+INSERT INTO "Line" VALUES(2,2,3,8,'"In the end, we only regret the chances we didnt take." - Unknown');
+INSERT INTO "Line" VALUES(2,2,3,9,'The sound of a childs laughter is infectious.');
+INSERT INTO "Line" VALUES(2,2,3,10,'"Life is what happens to us while');
+						  
+INSERT INTO "Line" VALUES(2,2,4,6,'The sun rises in the east and sets in the west.');
+INSERT INTO "Line" VALUES(2,2,4,7,'I am now tired');
+INSERT INTO "Line" VALUES(2,2,4,8,'Music can have a powerful effect on our emotions and mood.');
+INSERT INTO "Line" VALUES(2,2,4,9,'Its important to stay hydrated by drinking enough water.');
+INSERT INTO "Line" VALUES(2,2,4,10,'The internet has revolutionized the way we communicate and access information.');
+INSERT INTO "Line" VALUES(2,2,4,11,'The End');
+
+
+
+
+
 
 

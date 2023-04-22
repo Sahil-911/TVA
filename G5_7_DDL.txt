@@ -7,7 +7,7 @@ CREATE TABLE "User" (
 );
 CREATE TABLE "Project"(
     Project_id INT NOT NULL,
-    Project_name VARCHAR(20) NOT NULL,
+    Project_name VARCHAR(50) NOT NULL,
     Manager_id INT NOT NULL,
     PRIMARY KEY(Project_id)
 );
