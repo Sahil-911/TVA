@@ -134,8 +134,8 @@ INSERT INTO "Change"(
 SELECT 1 AS Version_id,
     1 AS Timeline_id,
     "Local_2".Project_id,
-    "Local_2".Line_id,
     "Local_2".File_id,
+    "Local_2".Line_id,
     "Local_1".Content AS Previous_content,
     "Local_2".Content AS New_content
 FROM (
@@ -193,8 +193,6 @@ WHERE "Line".Line_id = "Change".Line_id
      AND "Change".Version_id = 1
      AND "Change".Timeline_id = 1
      AND "Change".Project_id = 1;
-
-
 
 -- Compare with any version in current timeline ❗ ✅
 select sm,
