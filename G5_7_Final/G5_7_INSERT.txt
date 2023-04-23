@@ -193,7 +193,7 @@ INSERT INTO "Version" VALUES(1,1,2,3);
 
 -- Compare local 1 and local 3 of project 1 and add changes into change table with version 1
 INSERT INTO "Change"(Version_id,  Timeline_id,Project_id, File_id, Line_id, Previous_content, New_content)
-SELECT 1 AS Version_id,  1 AS Timeline_id, "Local_2".Project_id,  "Local_2".Line_id, "Local_2".File_id,
+SELECT 1 AS Version_id,  1 AS Timeline_id, "Local_2".Project_id, "Local_2".File_id,"Local_2".Line_id,
      "Local_1".Content AS Previous_content, "Local_2".Content AS New_content
 FROM (
 ( SELECT Line_id, File_id, Project_id, Content FROM "Line" WHERE Local_id = 1 AND Project_id = 1) AS "Local_1"
