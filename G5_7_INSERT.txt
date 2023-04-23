@@ -207,16 +207,6 @@ WHERE "Local_1".Content != "Local_2".Content
      OR "Local_2".Content IS NULL;
 
 
--- Update Local_1
-DELETE FROM "File" WHERE Local_id = 1;
-INSERT INTO "File"(File_id, Local_id, File_name, Project_id) SELECT File_id,1 as Local_id, File_name, Project_id
-FROM "File" WHERE Local_id = 3 AND Project_id = 1;
-
-DELETE FROM "Line" WHERE Local_id = 1;
-INSERT INTO "Line"(Line_id,File_id,Local_id,Project_id,Content) SELECT Line_id, File_id, 1 as Local_id, Project_id, Content
-FROM "Line" WHERE Local_id = 3 AND Project_id = 1;
-
-
 
 --PUSH
 INSERT INTO "Change"(Version_id,  Timeline_id,Project_id, File_id, Line_id, Previous_content, New_content)
@@ -232,3 +222,14 @@ FROM (
 WHERE "Local_1".Content != "Local_2".Content
      OR "Local_1".Content IS NULL
      OR "Local_2".Content IS NULL;
+
+-- Update Local_1
+
+DELETE FROM "File" WHERE Local_id = 1;
+INSERT INTO "File"(File_id, Local_id, File_name, Project_id) SELECT File_id,1 as Local_id, File_name, Project_id
+FROM "File" WHERE Local_id = 3 AND Project_id = 1;
+
+DELETE FROM "Line" WHERE Local_id = 1;
+INSERT INTO "Line"(Line_id,File_id,Local_id,Project_id,Content) SELECT Line_id, File_id, 1 as Local_id, Project_id, Content
+FROM "Line" WHERE Local_id = 3 AND Project_id = 1;
+
