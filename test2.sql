@@ -1,0 +1,273 @@
+-- # Tentative Query List
+
+
+-- ## Queries Related to Managing the Project
+-- Create projects ✅
+INSERT INTO "Project"
+VALUES(1, 'Version Control System', 1);
+INSERT INTO "Collaborator"
+VALUES (1, 1, 'manager');
+INSERT INTO "Timeline"
+VALUES(1, 1);
+INSERT INTO "Local_Files"
+VALUES(1, 1, NULL, 1);
+
+-- Invite contributors ✅
+INSERT INTO "Collaborator"
+VALUES(1, 3, 'assistant manager');
+INSERT INTO "Local_Files"
+VALUES(3, 1, 3, 1);
+INSERT INTO "File"(File_id, Local_id, File_name, Project_id)
+SELECT File_id,
+    3 as Local_id,
+    File_name,
+    Project_id
+FROM "File"
+WHERE Local_id = 1
+    AND Project_id = 1;
+INSERT INTO "Line"(Line_id, File_id, Local_id, Project_id, Content)
+SELECT Line_id,
+    File_id,
+    3 as Local_id,
+    Project_id,
+    Content
+FROM "Line"
+WHERE Local_id = 1
+    AND Project_id = 1;
+
+-- Analyse each contributor's gross contribution using aggregation operations ✅
+select user_id,
+    user_name,
+    change
+from (
+        select COUNT(*) as change,
+            user_id
+        from (
+                "Change"
+                natural join "Version"
+            ) as ch
+            join "User" on user_id = updater_id
+        where project_id = 1
+        group by user_id
+    ) as e
+    natural join "User";
+
+-- Analyse user's contribution in various projects ✅
+select project_id,
+    project_name,
+    change
+from (
+        select COUNT(*) as change,
+            project_id
+        from (
+                "Change"
+                natural join "Version"
+            ) as ch
+        group by project_id
+    ) as e
+    natural join "Project";
+
+
+-- ## Queries Related to Timelines
+-- Create new timelines ✅
+INSERT INTO "Timeline"
+VALUES(2, 2);
+UPDATE "Timeline"
+SET latest_files = 2,
+    latest_version = 0
+WHERE project_id = 1
+    AND timeline_id = 2;
+INSERT INTO "Local_Files"
+VALUES(2, 1, NULL, 2);
+
+-- 💥 Merge two timelines ❗
+-- Analyse possible merge conflicts ✅
+
+
+
+
+-- ## Queries Related to Versions
+-- Update to the latest version in current timeline ✅
+DELETE FROM "File"
+WHERE Local_id = 3;
+INSERT INTO "File"(File_id, Local_id, File_name, Project_id)
+SELECT File_id,
+    3 as Local_id,
+    File_name,
+    Project_id
+FROM "File"
+WHERE Local_id = 1
+    AND Project_id = 1;
+DELETE FROM "Line"
+WHERE Local_id = 3;
+INSERT INTO "Line"(Line_id, File_id, Local_id, Project_id, Content)
+SELECT Line_id,
+    File_id,
+    3 as Local_id,
+    Project_id,
+    Content
+FROM "Line"
+WHERE Local_id = 1
+    AND Project_id = 1;
+
+-- 💥 Set the latest version in current timeline 
+INSERT INTO "Version"
+VALUES(1, 1, 1, 3);
+INSERT INTO "Change"(
+        Version_id,
+        Timeline_id,
+        Project_id,
+        File_id,
+        Line_id,
+        Previous_content,
+        New_content
+    )
+SELECT 1 AS Version_id,
+    1 AS Timeline_id,
+    "Local_2".Project_id,
+    "Local_2".Line_id,
+    "Local_2".File_id,
+    "Local_1".Content AS Previous_content,
+    "Local_2".Content AS New_content
+FROM (
+        (
+            SELECT Line_id,
+                File_id,
+                Project_id,
+                Content
+            FROM "Line"
+            WHERE Local_id = 1
+                AND Project_id = 1
+        ) AS "Local_1"
+        FULL OUTER JOIN (
+            SELECT Line_id,
+                File_id,
+                Project_id,
+                Content
+            FROM "Line"
+            WHERE Local_id = 3
+                AND Project_id = 1
+        ) AS "Local_2" ON "Local_1".Line_id = "Local_2".Line_id
+        AND "Local_1".File_id = "Local_2".File_id
+    )
+WHERE "Local_1".Content != "Local_2".Content
+    OR "Local_1".Content IS NULL
+    OR "Local_2".Content IS NULL;
+DELETE FROM "File"
+WHERE Local_id = 1;
+INSERT INTO "File"(File_id, Local_id, File_name, Project_id)
+SELECT File_id,
+    1 as Local_id,
+    File_name,
+    Project_id
+FROM "File"
+WHERE Local_id = 3
+    AND Project_id = 1;
+DELETE FROM "Line"
+WHERE Local_id = 1;
+INSERT INTO "Line"(Line_id, File_id, Local_id, Project_id, Content)
+SELECT Line_id,
+    File_id,
+    1 as Local_id,
+    Project_id,
+    Content
+FROM "Line"
+WHERE Local_id = 3
+    AND Project_id = 1;
+
+-- 💥 Revert to the previous version ✅
+UPDATE "Line"
+SET "Content" = "Change".Previous_content
+FROM "Change"
+WHERE "Line".Line_id = "Change".Line_id
+     AND "Line".File_id = "Change".File_id
+     AND "Change".Version_id = 1
+     AND "Change".Timeline_id = 1
+     AND "Change".Project_id = 1;
+
+
+
+-- Compare with any version in current timeline ❗ ✅
+select sm,
+     mx,
+     li as line_id,
+     fi as file_id,
+     firs.previous_content,
+     cha.new_content
+from (
+          select *
+          from (
+                    select min(version_id) as sm,
+                         max(version_id) as mx,
+                         line_id as li,
+                         file_id as fi
+                    from change
+                    where project_id = 1
+                         and timeline_id = 1
+                    group by line_id,
+                         file_id
+               ) as que
+               join change as ch on que.li = ch.line_id
+               and que.fi = ch.file_id
+               and sm = ch.version_id
+          where project_id = 1
+               and timeline_id = 1
+     ) as firs
+     join change as cha on firs.li = cha.line_id
+     and firs.fi = cha.file_id
+     and mx = cha.version_id
+where cha.project_id = 1
+     and cha.timeline_id = 1
+     and sm >= 2
+     and mx <= 4;
+
+--💥 Show file history line-wise ❗ 
+select version_id,
+     timeline_id,
+     file_id,
+     line_id,
+     previous_content,
+     new_content,
+     user_name as updater_name
+from (
+          (
+               select *
+               from (
+                         select max(version_id) as mx,
+                              line_id as li
+                         from change
+                         where project_id = 1
+                              and timeline_id = 1
+                              and file_id = 1
+                         group by line_id
+                    ) as que
+                    join change as ch on que.li = ch.line_id
+                    and mx = ch.version_id
+               where project_id = 1
+                    and timeline_id = 1
+                    and file_id = 1
+          ) as fir
+          natural join "Version"
+     ) as sec
+     join "User" on updater_id = user_id;
+
+
+-- ## Queries Related to File changes
+-- Add a line in a file ✅
+INSERT INTO "Line" VALUES(2,1,5,5,'A warm hug can make everything feel better.');
+
+-- Update a line in a file ✅
+UPDATE "Line" SET Content = 'The sun rises in the east and sets in the west.' WHERE Line_id = 2 AND File_id = 4 AND Local_id = 2 AND Project_id = 2;
+
+-- Remove a line in a file ✅
+DELETE FROM "Line"
+WHERE "Line_id" = 5
+     AND "File_id" = 1
+     AND "local_id" = 1
+     AND "Project_id" = 1;
+
+-- Clean entire file ✅
+DELETE FROM "Line"
+WHERE "File_id" = 1
+     AND "local_id" = 1
+     AND "Project_id" = 2;
