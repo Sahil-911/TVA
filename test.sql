@@ -31,9 +31,6 @@ DELETE FROM "Line" WHERE Local_id = 2;
 INSERT INTO "Line"(Line_id,File_id,Local_id,Project_id,Content) SELECT Line_id, File_id, 1 as Local_id, Project_id, Content
 FROM "Line" WHERE Local_id = 4 AND Project_id = 1;
 
-
-
-
 SET search_path TO dbms_project;
 
 INSERT INTO "Version" VALUES(2,1,3,4);

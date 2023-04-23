@@ -2,7 +2,7 @@
 
 
 -- ## Queries Related to Managing the Project
--- Create projects ✅
+-- Create projects 
 INSERT INTO "Project"
 VALUES(1, 'Version Control System', 1);
 INSERT INTO "Collaborator"
@@ -12,7 +12,7 @@ VALUES(1, 1);
 INSERT INTO "Local_Files"
 VALUES(1, 1, NULL, 1);
 
--- Invite contributors ✅
+-- Invite contributors 
 INSERT INTO "Collaborator"
 VALUES(1, 3, 'assistant manager');
 INSERT INTO "Local_Files"
@@ -35,7 +35,7 @@ FROM "Line"
 WHERE Local_id = 1
     AND Project_id = 1;
 
--- Analyse each contributor's gross contribution using aggregation operations ✅
+-- Analyse each contributor's gross contribution using aggregation operations 
 select user_id,
     user_name,
     change
@@ -52,7 +52,7 @@ from (
     ) as e
     natural join "User";
 
--- Analyse user's contribution in various projects ✅
+-- Analyse user's contribution in various projects 
 select project_id,
     project_name,
     change
@@ -69,7 +69,7 @@ from (
 
 
 -- ## Queries Related to Timelines
--- Create new timelines ✅
+-- Create new timelines 
 INSERT INTO "Timeline"
 VALUES(2, 2);
 UPDATE "Timeline"
@@ -80,14 +80,43 @@ WHERE project_id = 1
 INSERT INTO "Local_Files"
 VALUES(2, 1, NULL, 2);
 
--- 💥 Merge two timelines ❗
--- Analyse possible merge conflicts ✅
+-- Analyse possible merge conflicts 
+select t1.line_id,
+     t1.file_id,
+     t1.content as t1_content,
+     t2.content as t2_content
+from (
+          (
+               select *
+               from "Line"
+               where local_id = 1
+                    and project_id = 1
+          ) as t1
+          JOIN (
+               select *
+               from "Line"
+               where local_id = 2
+                    and project_id = 1
+          ) as t2 ON t1.line_id = t2.line_id
+          and t1.file_id = t2.file_id
+     )
+where t1.content != t2.content;
 
+-- Merge two timelines
+DELETE FROM "File" WHERE Local_id = 2 AND Project_id = 1 AND File_id >= 3;
+INSERT INTO "File"(File_id, Local_id, File_name, Project_id) SELECT File_id,1  as Local_id, File_name, Project_id
+FROM "File" WHERE Local_id = 2 AND Project_id = 1;
 
+INSERT INTO "Line"(Line_id,File_id,Local_id,Project_id,Content) SELECT Line_id, File_id, 1 as Local_id, Project_id, Content
+FROM "Line" WHERE Local_id = 2 AND Project_id = 1;
 
+DELETE FROM "Line" WHERE Local_id = 2 AND Project_id = 1;
+DELETE FROM "File" WHERE Local_id = 2 AND Project_id = 1;
+DELETE FROM "Local_Files" WHERE Timeline_id = 2;
+DELETE FROM "Timeline" WHERE Timeline_id = 2 AND Project_id = 1;
 
 -- ## Queries Related to Versions
--- Update to the latest version in current timeline ✅
+-- Update to the latest version in current timeline 
 DELETE FROM "File"
 WHERE Local_id = 3;
 INSERT INTO "File"(File_id, Local_id, File_name, Project_id)
@@ -175,7 +204,7 @@ FROM "Line"
 WHERE Local_id = 3
     AND Project_id = 1;
 
--- 💥 Revert to the previous version ✅
+-- 💥 Revert to the previous version 
 UPDATE "Line"
 SET "Content" = "Change".Previous_content
 FROM "Change"
@@ -187,7 +216,7 @@ WHERE "Line".Line_id = "Change".Line_id
 
 
 
--- Compare with any version in current timeline ❗ ✅
+-- Compare with any version in current timeline ❗ 
 select sm,
      mx,
      li as line_id,
@@ -253,20 +282,20 @@ from (
 
 
 -- ## Queries Related to File changes
--- Add a line in a file ✅
+-- Add a line in a file 
 INSERT INTO "Line" VALUES(2,1,5,5,'A warm hug can make everything feel better.');
 
--- Update a line in a file ✅
+-- Update a line in a file 
 UPDATE "Line" SET Content = 'The sun rises in the east and sets in the west.' WHERE Line_id = 2 AND File_id = 4 AND Local_id = 2 AND Project_id = 2;
 
--- Remove a line in a file ✅
+-- Remove a line in a file 
 DELETE FROM "Line"
 WHERE "Line_id" = 5
      AND "File_id" = 1
      AND "local_id" = 1
      AND "Project_id" = 1;
 
--- Clean entire file ✅
+-- Clean entire file 
 DELETE FROM "Line"
 WHERE "File_id" = 1
      AND "local_id" = 1
