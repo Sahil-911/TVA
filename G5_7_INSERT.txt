@@ -207,28 +207,9 @@ WHERE "Local_1".Content != "Local_2".Content
      OR "Local_2".Content IS NULL;
 
 
--- Update Local_1
-DELETE FROM "File" WHERE Local_id = 1;
-INSERT INTO "File"(File_id, Local_id, File_name, Project_id) SELECT File_id,1 as Local_id, File_name, Project_id
-FROM "File" WHERE Local_id = 3 AND Project_id = 1;
 
-DELETE FROM "Line" WHERE Local_id = 1;
-INSERT INTO "Line"(Line_id,File_id,Local_id,Project_id,Content) SELECT Line_id, File_id, 1 as Local_id, Project_id, Content
-FROM "Line" WHERE Local_id = 3 AND Project_id = 1;
-
-
--- do the same for local 2 and local 4 of project 2
-
-INSERT INTO "Version" VALUES(2,1,2,4);
-
-UPDATE "Line" SET content = 'Are you a rainbow? Because you brighten up my day.' WHERE local_id = 4 AND project_id = 1 AND file_id = 3 AND line_id = 1;
-UPDATE "Line" SET content = 'Are you a puzzle? Because I want to piece you together.' WHERE local_id = 4  AND project_id = 1 AND file_id = 4 AND line_id = 2;
-UPDATE "Line" SET content = 'Are you a phone? Because I want to hold you and talk to you.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 3;
-UPDATE "Line" SET content = 'Are you a painting? Because you are a masterpiece.' WHERE local_id = 4 AND project_id = 1 AND file_id = 4 AND line_id = 4;
-UPDATE "Line" SET content = 'Are you a key? Because you unlock my heart.' WHERE local_id = 4 AND project_id = 1 AND file_id = 5 AND line_id = 5;
-
-INSERT INTO "Change"(Version_id,  Timeline_id,Project_id, File_id, Line_id, Previous_content, New_content)
-SELECT 2 AS Version_id, 2 AS Timeline_id, "Local_2".Project_id,  "Local_2".Line_id, "Local_2".File_id,
+INSERT INTO "Change" (Version_id,  Timeline_id,Project_id, File_id, Line_id, Previous_content, New_content)
+SELECT 2 AS Version_id, 2 AS Timeline_id, "Local_2".Project_id,   "Local_2".File_id, "Local_2".Line_id,
      "Local_1".Content AS Previous_content, "Local_2".Content AS New_content
 FROM (
 ( SELECT Line_id, File_id, Project_id, Content FROM "Line" WHERE Local_id = 2 AND Project_id = 1) AS "Local_1"
@@ -241,10 +222,13 @@ WHERE "Local_1".Content != "Local_2".Content
      OR "Local_1".Content IS NULL
      OR "Local_2".Content IS NULL;
 
-DELETE FROM "File" WHERE Local_id = 2;
-INSERT INTO "File"(File_id, Local_id, File_name, Project_id) SELECT File_id,2 as Local_id, File_name, Project_id
-FROM "File" WHERE Local_id = 4 AND Project_id = 1;
+-- Update Local_1
 
-DELETE FROM "Line" WHERE Local_id = 2;
-INSERT INTO "Line"(Line_id,File_id,Local_id,Project_id,Content) SELECT Line_id, File_id,2 as Local_id, Project_id, Content
-FROM "Line" WHERE Local_id = 4 AND Project_id = 1;
+DELETE FROM "File" WHERE Local_id = 1;
+INSERT INTO "File"(File_id, Local_id, File_name, Project_id) SELECT File_id,1 as Local_id, File_name, Project_id
+FROM "File" WHERE Local_id = 3 AND Project_id = 1;
+
+DELETE FROM "Line" WHERE Local_id = 1;
+INSERT INTO "Line"(Line_id,File_id,Local_id,Project_id,Content) SELECT Line_id, File_id, 1 as Local_id, Project_id, Content
+FROM "Line" WHERE Local_id = 3 AND Project_id = 1;
+
