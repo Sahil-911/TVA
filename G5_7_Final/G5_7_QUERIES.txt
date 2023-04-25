@@ -81,7 +81,7 @@ VALUES(2, 1, NULL, 2);
 
 -- 💥 Merge two timelines ❗
 
-INSERT INTO "File"(File_id, Local_id, File_name, Project_id) SELECT File_id,1  as Local_id, File_name, Project_id FROM "File" WHERE Local_id = 2 AND Project_id = 1 AND File_id IN (SELECT File_id FROM "File" WHERE Local_id = 1 AND Project_id = 1);
+INSERT INTO "File"(File_id, Local_id, File_name, Project_id) SELECT File_id,1  as Local_id, File_name, Project_id FROM "File" WHERE Local_id = 2 AND Project_id = 1 AND File_id NOT IN (SELECT File_id FROM "File" WHERE Local_id = 1 AND Project_id = 1);
 
 INSERT INTO "Line"(Line_id,File_id,Local_id,Project_id,Content) SELECT Line_id, File_id, 1 as Local_id, Project_id, Content
 FROM "Line" WHERE Local_id = 2 AND Project_id = 1;
